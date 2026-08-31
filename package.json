@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "@tanstack/react-cross-context": "1.99.0",
-    "@tanstack/react-router": "1.120.20",
-    "@tanstack/start": "1.120.20",
+    "@tanstack/react-router": "1.112.18",
+    "@tanstack/start": "1.112.18",
+    "@tanstack/server-functions-plugin": "1.112.18",
     "better-sqlite3": "^11.5.0",
     "drizzle-orm": "^0.36.1",
     "lucide-react": "^0.470.0",
@@ -21,8 +22,8 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/vite": "^4.0.0",
-    "@tanstack/router-generator": "1.120.20",
-    "@tanstack/router-plugin": "1.120.20",
+    "@tanstack/router-generator": "1.112.18",
+    "@tanstack/router-plugin": "1.112.18",
     "@types/better-sqlite3": "^7.6.11",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
