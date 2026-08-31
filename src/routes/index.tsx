@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowRight, Leaf, ShieldCheck, Users, MoveRight, Download } from 'lucide-react'
 import { metrics, products, valueProps, steps, testimonials, articles } from '../data/content'
+import { TractionChart } from '../components/TractionChart'
 
 export const Route = createFileRoute('/')({
   component: Homepage,
@@ -13,8 +14,8 @@ function Homepage() {
       <section className="relative w-full h-[90vh] min-h-[600px] flex items-center pt-10">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://placehold.co/1920x1080/173D2B/FAF7F0?text=Foto+Lahan+Pertanian+Asli" 
-            alt="Lahan Pertanian Cetrofarm" 
+            src="/assets/hero-panen-golden-hour.png" 
+            alt="Petani memanen saat golden hour" 
             className="w-full h-full object-cover opacity-80"
           />
           <div className="absolute inset-0 bg-forest/70 mix-blend-multiply"></div>
@@ -118,7 +119,7 @@ function Homepage() {
               </div>
             </div>
             <div className="md:w-1/2">
-              <img src="https://placehold.co/800x1000/FAF7F0/173D2B?text=Visual+Alur+Rantai+Pasok" alt="Alur Ekosistem" className="rounded-sm w-full shadow-2xl" />
+              <img src="/assets/ilustrasi-rantai-pasok.png" alt="Alur Ekosistem Rantai Pasok" className="rounded-sm w-full shadow-2xl" />
             </div>
           </div>
         </div>
@@ -253,7 +254,7 @@ function Homepage() {
             </div>
           </div>
           <div className="md:w-1/2">
-            <img src="https://placehold.co/600x400/FAF7F0/173D2B?text=Grafik+Traksi+Keuangan" alt="Traksi Investor" className="rounded-sm shadow-xl" />
+            <TractionChart />
           </div>
         </div>
       </section>
@@ -282,8 +283,9 @@ function Homepage() {
       </section>
 
       {/* 12. Lead Magnet Band */}
-      <section className="py-16 bg-wheat text-forest border-y border-forest/10">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-16 text-cream border-y border-forest/10" style={{ backgroundImage: 'url(/assets/bg-newsletter.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-forest/80 mix-blend-multiply"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl font-serif font-bold mb-4">Tetap Terhubung dengan Inovasi Pangan</h2>
           <p className="mb-8 max-w-xl mx-auto">Dapatkan Katalog Produk, update panen musim ini, dan Ringkasan Investasi langsung ke inbox Anda.</p>
           <form className="max-w-md mx-auto flex gap-2">

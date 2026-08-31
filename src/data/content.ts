@@ -12,19 +12,19 @@ export const products = [
     id: "sayuran-segar",
     title: "Sayuran Segar",
     desc: "Dipanen langsung dari kebun dengan standar organik. Kualitas ekspor.",
-    image: "https://placehold.co/600x400/173D2B/FAF7F0?text=Sayuran+Segar"
+    image: "/assets/produk-sayuran-segar.png"
   },
   {
     id: "bahan-pokok",
     title: "Bahan Pokok",
     desc: "Beras Rindjing dan hasil bumi berkualitas tinggi untuk stabilitas dapur Anda.",
-    image: "https://placehold.co/600x400/173D2B/FAF7F0?text=Bahan+Pokok"
+    image: "/assets/produk-bahan-pokok.png"
   },
   {
     id: "protein-hewani",
     title: "Protein Hewani",
     desc: "Daging ayam dan telur dari peternakan terstandarisasi bebas residu antibiotik.",
-    image: "https://placehold.co/600x400/173D2B/FAF7F0?text=Protein+Hewani"
+    image: "/assets/produk-protein-hewani.png"
   }
 ];
 
@@ -72,19 +72,19 @@ export const articles = [
   {
     title: "Masa Depan Pertanian Organik di Jawa Tengah",
     slug: "masa-depan-pertanian-organik",
-    image: "https://placehold.co/400x300/173D2B/FAF7F0?text=Artikel+1",
+    image: "/assets/artikel-1.png",
     date: "12 Ags 2026"
   },
   {
     title: "Mengenal Beras Rindjing: Varian Unggulan",
     slug: "mengenal-beras-rindjing",
-    image: "https://placehold.co/400x300/173D2B/FAF7F0?text=Artikel+2",
+    image: "/assets/artikel-2.png",
     date: "05 Ags 2026"
   },
   {
     title: "Pentingnya Traceability dalam Rantai Pasok Pangan",
     slug: "traceability-rantai-pasok",
-    image: "https://placehold.co/400x300/173D2B/FAF7F0?text=Artikel+3",
+    image: "/assets/artikel-3.png",
     date: "28 Jul 2026"
   }
 ];

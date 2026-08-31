@@ -8,8 +8,12 @@ export const Route = createRootRoute({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { property: 'og:image', content: '/assets/og-image.png' },
+      { property: 'og:title', content: 'Cetrofarm - Agrikultur Terintegrasi' },
+      { property: 'og:description', content: 'Membangun Ketahanan Pangan, Satu Panen Sekaligus.' },
     ],
     links: [
+      { rel: 'icon', href: '/assets/favicon.png', type: 'image/png' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       {
         rel: 'preconnect',
