@@ -1,0 +1,297 @@
+import { createFileRoute } from '@tanstack/react-router'
+import { ArrowRight, Leaf, ShieldCheck, Users, MoveRight, Download } from 'lucide-react'
+import { metrics, products, valueProps, steps, testimonials, articles } from '../data/content'
+
+export const Route = createFileRoute('/')({
+  component: Homepage,
+})
+
+function Homepage() {
+  return (
+    <div className="w-full">
+      {/* 2. Hero Section */}
+      <section className="relative w-full h-[90vh] min-h-[600px] flex items-center pt-10">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://placehold.co/1920x1080/173D2B/FAF7F0?text=Foto+Lahan+Pertanian+Asli" 
+            alt="Lahan Pertanian Cetrofarm" 
+            className="w-full h-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-forest/70 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-forest/50 via-forest/20 to-cream"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10 text-cream">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-6">
+              Membangun Ketahanan Pangan, <span className="text-wheat italic">Satu Panen Sekaligus.</span>
+            </h1>
+            <p className="text-lg md:text-xl text-cream/90 mb-10 max-w-2xl font-light leading-relaxed">
+              Cetrofarm merawat rantai pasok pangan dari petani binaan langsung ke meja Anda. Memberikan kepastian bagi offtaker dan kesejahteraan bagi petani sejak 2018.
+            </p>
+            <div className="flex flex-wrap gap-4 mb-16">
+              <a href="/investor" className="px-6 py-3 bg-wheat text-forest font-medium rounded-sm hover:bg-white transition-all flex items-center gap-2">
+                Peluang Kemitraan & Investasi <ArrowRight size={18} />
+              </a>
+              <a href="/ekosistem" className="px-6 py-3 bg-forest/40 backdrop-blur-sm border border-cream/30 text-cream font-medium rounded-sm hover:bg-forest/60 transition-all">
+                Lihat Ekosistem Kami
+              </a>
+            </div>
+            
+            {/* Panel Metrik */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-cream/20">
+              <div>
+                <p className="text-3xl font-serif font-bold text-wheat">{metrics.farmers}</p>
+                <p className="text-sm text-cream/80 uppercase tracking-wider mt-1">Petani Binaan</p>
+              </div>
+              <div>
+                <p className="text-3xl font-serif font-bold text-wheat">{metrics.landArea}</p>
+                <p className="text-sm text-cream/80 uppercase tracking-wider mt-1">Lahan Produksi</p>
+              </div>
+              <div>
+                <p className="text-3xl font-serif font-bold text-wheat">{metrics.productLines}</p>
+                <p className="text-sm text-cream/80 uppercase tracking-wider mt-1">Lini Produk</p>
+              </div>
+              <div>
+                <p className="text-3xl font-serif font-bold text-wheat">{metrics.established}</p>
+                <p className="text-sm text-cream/80 uppercase tracking-wider mt-1">Beroperasi Sejak</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Trust bar */}
+      <section className="bg-cream py-10 border-b border-forest/10">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-forest/60 text-sm font-medium mb-6 uppercase tracking-widest">Dipercaya oleh mitra strategis & sertifikasi mutu</p>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all">
+            {/* Placeholder logo netral */}
+            <div className="font-serif text-xl font-bold flex items-center gap-2"><ShieldCheck/> SERTIFIKASI ORGANIK</div>
+            <div className="font-serif text-xl font-bold flex items-center gap-2"><ShieldCheck/> BPOM RI</div>
+            <div className="font-serif text-xl font-bold">RETAIL PARTNER A</div>
+            <div className="font-serif text-xl font-bold">RETAIL PARTNER B</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Value proposition */}
+      <section className="py-24 bg-cream">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-4xl font-serif font-bold text-forest mb-4">Membawa Alam Lebih Dekat</h2>
+            <p className="text-forest/70">Kami tidak hanya menanam, kami merawat sebuah ekosistem kehidupan yang memberikan nilai tambah di setiap tahapnya.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-12">
+            {valueProps.map((prop, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-forest/5 rounded-full flex items-center justify-center text-forest mb-6">
+                  {idx === 0 ? <MoveRight size={28}/> : idx === 1 ? <ShieldCheck size={28}/> : <Users size={28}/>}
+                </div>
+                <h3 className="text-2xl font-serif font-bold text-forest mb-3">{prop.title}</h3>
+                <p className="text-forest/70 leading-relaxed">{prop.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Ekosistem rantai pasok */}
+      <section className="py-24 bg-forest text-cream">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row gap-16 items-center">
+            <div className="md:w-1/2">
+              <h2 className="text-4xl font-serif font-bold mb-6">Ekosistem Rantai Pasok Terintegrasi</h2>
+              <p className="text-cream/80 text-lg mb-8 leading-relaxed">
+                Menghubungkan kerja keras petani langsung ke meja makan keluarga Anda dengan memotong rantai distribusi yang tidak efisien.
+              </p>
+              <div className="space-y-8">
+                {steps.map((step, idx) => (
+                  <div key={idx} className="flex gap-4">
+                    <span className="text-2xl font-serif text-wheat font-bold">{step.num}</span>
+                    <div>
+                      <h4 className="text-xl font-bold mb-1">{step.title}</h4>
+                      <p className="text-cream/70">{step.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="md:w-1/2">
+              <img src="https://placehold.co/800x1000/FAF7F0/173D2B?text=Visual+Alur+Rantai+Pasok" alt="Alur Ekosistem" className="rounded-sm w-full shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Tiga lini produk */}
+      <section className="py-24 bg-cream">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="text-4xl font-serif font-bold text-forest mb-4">Lini Produk Kami</h2>
+              <p className="text-forest/70">Kualitas premium untuk kebutuhan keluarga maupun offtaker B2B.</p>
+            </div>
+            <a href="/produk" className="hidden md:flex items-center gap-2 text-forest font-medium hover:text-wheat transition-colors">
+              Lihat Semua Katalog <ArrowRight size={18} />
+            </a>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {products.map(p => (
+              <a href={`/produk#${p.id}`} key={p.id} className="group block bg-white rounded-sm overflow-hidden border border-forest/10 hover:shadow-xl transition-all">
+                <div className="h-64 overflow-hidden">
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-8">
+                  <h3 className="text-2xl font-serif font-bold text-forest mb-3">{p.title}</h3>
+                  <p className="text-forest/70 mb-6">{p.desc}</p>
+                  <span className="text-wheat font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Pelajari Lebih Lanjut <ArrowRight size={16}/></span>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div className="mt-8 text-center md:hidden">
+            <a href="/produk" className="inline-flex items-center gap-2 text-forest font-medium border-b border-forest pb-1">
+              Lihat Semua Katalog <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 7 & 8. Jaminan Mutu & Traction */}
+      <section className="py-20 bg-forest/5 border-y border-forest/10">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl font-serif font-bold text-forest mb-8">Standar & Traksi Kami</h2>
+              <div className="space-y-6">
+                <div className="flex gap-4 items-start">
+                  <Leaf className="text-wheat shrink-0 mt-1" size={24}/>
+                  <div>
+                    <h4 className="font-bold text-forest text-lg">100% Organik & Bebas Kimia</h4>
+                    <p className="text-forest/70 mt-1">Menggunakan pupuk alami dan pestisida nabati buatan petani binaan sendiri.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <ShieldCheck className="text-wheat shrink-0 mt-1" size={24}/>
+                  <div>
+                    <h4 className="font-bold text-forest text-lg">Quality Control Ketat</h4>
+                    <p className="text-forest/70 mt-1">Setiap hasil panen melewati proses penyortiran di warehouse terpusat.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-sm border border-forest/10 shadow-sm">
+              <h3 className="text-xl font-bold text-forest mb-6">Pertumbuhan Ekosistem (Per Bulan)</h3>
+              <div className="space-y-6">
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-forest font-medium">Volume Panen</span>
+                    <span className="text-forest font-bold">{metrics.harvestVolume}</span>
+                  </div>
+                  <div className="w-full bg-forest/10 h-2 rounded-full overflow-hidden">
+                    <div className="bg-forest w-[80%] h-full rounded-full"></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-forest font-medium">Jangkauan Distribusi</span>
+                    <span className="text-forest font-bold">{metrics.distributionReach}</span>
+                  </div>
+                  <div className="w-full bg-forest/10 h-2 rounded-full overflow-hidden">
+                    <div className="bg-wheat w-[65%] h-full rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Testimoni */}
+      <section className="py-24 bg-cream">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-serif font-bold text-center text-forest mb-16">Dipercaya oleh Mereka</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((t, idx) => (
+              <div key={idx} className="bg-white p-8 border border-forest/10 rounded-sm">
+                <div className="text-wheat mb-6">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.017 21L16.411 14.9433H11.4571V3H21V14.9433L18.4343 21H14.017ZM3.56 21L5.954 14.9433H1V3H10.5429V14.9433L7.97714 21H3.56Z" />
+                  </svg>
+                </div>
+                <p className="text-forest/80 text-lg mb-6 italic leading-relaxed">"{t.quote}"</p>
+                <div>
+                  <p className="font-bold text-forest">{t.author}</p>
+                  <p className="text-sm text-forest/60">{t.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <a href="/testimoni" className="inline-block border border-forest text-forest px-6 py-2 rounded-sm hover:bg-forest hover:text-cream transition-colors font-medium">Lihat Semua Testimoni</a>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Section Investor */}
+      <section className="py-24 bg-forest text-cream">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+          <div className="md:w-1/2">
+            <h2 className="text-4xl font-serif font-bold mb-6">Peluang Tumbuh Bersama</h2>
+            <p className="text-cream/80 text-lg mb-8 leading-relaxed">
+              Model bisnis yang teruji dengan margin offtaker stabil, skalabilitas perluasan lahan, serta dukungan data analitik pertanian. Bergabunglah sebagai mitra strategis untuk memperkuat ketahanan pangan nasional.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="/investor" className="px-6 py-3 bg-wheat text-forest font-medium rounded-sm hover:bg-white transition-colors">
+                Baca Profil untuk Investor
+              </a>
+              <a href="/unduh-cp" className="px-6 py-3 border border-cream/30 text-cream font-medium rounded-sm hover:bg-cream/10 transition-colors flex items-center gap-2">
+                <Download size={18}/> Unduh Company Profile (PDF)
+              </a>
+            </div>
+          </div>
+          <div className="md:w-1/2">
+            <img src="https://placehold.co/600x400/FAF7F0/173D2B?text=Grafik+Traksi+Keuangan" alt="Traksi Investor" className="rounded-sm shadow-xl" />
+          </div>
+        </div>
+      </section>
+
+      {/* 11. Artikel Terbaru */}
+      <section className="py-24 bg-cream">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-end mb-12">
+            <h2 className="text-4xl font-serif font-bold text-forest">Kabar Terbaru</h2>
+            <a href="/artikel" className="hidden md:flex items-center gap-2 text-forest font-medium hover:text-wheat transition-colors">
+              Lihat Semua Artikel <ArrowRight size={18} />
+            </a>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {articles.map((art, idx) => (
+              <a href={`/artikel/${art.slug}`} key={idx} className="group block">
+                <div className="overflow-hidden rounded-sm mb-4 h-56 border border-forest/10">
+                  <img src={art.image} alt={art.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+                </div>
+                <p className="text-sm text-wheat font-medium mb-2">{art.date}</p>
+                <h3 className="text-xl font-bold text-forest mb-2 group-hover:text-forest/80 transition-colors">{art.title}</h3>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 12. Lead Magnet Band */}
+      <section className="py-16 bg-wheat text-forest border-y border-forest/10">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-serif font-bold mb-4">Tetap Terhubung dengan Inovasi Pangan</h2>
+          <p className="mb-8 max-w-xl mx-auto">Dapatkan Katalog Produk, update panen musim ini, dan Ringkasan Investasi langsung ke inbox Anda.</p>
+          <form className="max-w-md mx-auto flex gap-2">
+            <input type="email" placeholder="Alamat Email Anda" required className="flex-1 px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:ring-2 focus:ring-forest bg-white" />
+            <button type="submit" className="px-6 py-3 bg-forest text-cream font-medium rounded-sm hover:bg-forest/90 transition-colors">Dapatkan</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  )
+}
