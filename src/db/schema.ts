@@ -8,19 +8,12 @@ export const contactSubmissions = sqliteTable('contact_submissions', {
   message: text('message').notNull(),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });
-
-export const investorLeads = sqliteTable('investor_leads', {
+export const leads = sqliteTable('leads', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   name: text('name').notNull(),
-  company: text('company'),
   email: text('email').notNull(),
   phone: text('phone'),
-  interest: text('interest').notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
-});
-
-export const newsletterSubscribers = sqliteTable('newsletter_subscribers', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  email: text('email').notNull().unique(),
+  leadType: text('lead_type').notNull(), // 'contact', 'investor', 'newsletter'
+  message: text('message'),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });

@@ -6,6 +6,12 @@
   --color-wheat: oklch(0.715 0.148 91.2);
   --font-serif: 'Instrument Serif', serif;
   --font-sans: 'Work Sans', sans-serif;
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
 }
 
 @layer base {

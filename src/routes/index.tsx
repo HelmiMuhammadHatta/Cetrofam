@@ -18,8 +18,8 @@ function Homepage() {
             alt="Petani memanen saat golden hour" 
             className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-forest/70 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-forest/50 via-forest/20 to-cream"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-forest/90 to-forest/20 mix-blend-multiply z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-forest/50 via-transparent to-cream z-10"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-cream">
@@ -30,48 +30,59 @@ function Homepage() {
             <p className="text-lg md:text-xl text-cream/90 mb-10 max-w-2xl font-light leading-relaxed">
               Cetrofarm merawat rantai pasok pangan dari petani binaan langsung ke meja Anda. Memberikan kepastian bagi offtaker dan kesejahteraan bagi petani sejak 2018.
             </p>
-            <div className="flex flex-wrap gap-4 mb-16">
-              <a href="/investor" className="px-6 py-3 bg-wheat text-forest font-medium rounded-sm hover:bg-white transition-all flex items-center gap-2">
-                Peluang Kemitraan & Investasi <ArrowRight size={18} />
+            <div className="flex flex-wrap gap-4 mb-16 relative z-20">
+              <a href="/profil" className="px-6 py-3 bg-wheat text-forest font-bold rounded-sm hover:bg-white hover:shadow-lg transition-all flex items-center gap-2">
+                Lihat Profil Perusahaan <ArrowRight size={18} />
               </a>
-              <a href="/ekosistem" className="px-6 py-3 bg-forest/40 backdrop-blur-sm border border-cream/30 text-cream font-medium rounded-sm hover:bg-forest/60 transition-all">
-                Lihat Ekosistem Kami
+              <a href="/investor" className="px-6 py-3 bg-transparent border-2 border-cream text-cream font-bold rounded-sm hover:bg-cream/10 transition-all">
+                Peluang Investasi
               </a>
             </div>
             
             {/* Panel Metrik */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-cream/20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-cream/20 relative z-20">
               <div>
-                <p className="text-3xl font-serif font-bold text-wheat">{metrics.farmers}</p>
-                <p className="text-sm text-cream/80 uppercase tracking-wider mt-1">Petani Binaan</p>
+                <p className="text-4xl font-serif font-bold text-wheat">{metrics.farmers}</p>
+                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Mitra Peternak</p>
               </div>
               <div>
-                <p className="text-3xl font-serif font-bold text-wheat">{metrics.landArea}</p>
-                <p className="text-sm text-cream/80 uppercase tracking-wider mt-1">Lahan Produksi</p>
+                <p className="text-4xl font-serif font-bold text-wheat">{metrics.landArea}</p>
+                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Lahan Kelola</p>
               </div>
               <div>
-                <p className="text-3xl font-serif font-bold text-wheat">{metrics.productLines}</p>
-                <p className="text-sm text-cream/80 uppercase tracking-wider mt-1">Lini Produk</p>
+                <p className="text-4xl font-serif font-bold text-wheat">{metrics.productLines}</p>
+                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Lini Bisnis</p>
               </div>
               <div>
-                <p className="text-3xl font-serif font-bold text-wheat">{metrics.established}</p>
-                <p className="text-sm text-cream/80 uppercase tracking-wider mt-1">Beroperasi Sejak</p>
+                <p className="text-4xl font-serif font-bold text-wheat">{metrics.established}</p>
+                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Tahun Berdiri</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Trust bar */}
-      <section className="bg-cream py-10 border-b border-forest/10">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-forest/60 text-sm font-medium mb-6 uppercase tracking-widest">Dipercaya oleh mitra strategis & sertifikasi mutu</p>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all">
-            {/* Placeholder logo netral */}
-            <div className="font-serif text-xl font-bold flex items-center gap-2"><ShieldCheck/> SERTIFIKASI ORGANIK</div>
-            <div className="font-serif text-xl font-bold flex items-center gap-2"><ShieldCheck/> BPOM RI</div>
-            <div className="font-serif text-xl font-bold">RETAIL PARTNER A</div>
-            <div className="font-serif text-xl font-bold">RETAIL PARTNER B</div>
+      {/* 3. Trust bar (Marquee) */}
+      <section className="bg-cream py-10 border-b border-forest/10 overflow-hidden">
+        <div className="container mx-auto px-4 mb-6">
+          <p className="text-center text-forest/60 text-sm font-medium uppercase tracking-widest">Dipercaya oleh mitra strategis & sertifikasi mutu</p>
+        </div>
+        <div className="relative flex overflow-x-hidden group">
+          <div className="animate-marquee whitespace-nowrap flex items-center gap-12 md:gap-24 opacity-60 grayscale transition-all group-hover:grayscale-0">
+            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> Sertifikasi Organik</span>
+            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> BPOM RI Teruji</span>
+            <span className="font-serif text-2xl font-bold text-forest mx-4">Ritel Modern Partner</span>
+            <span className="font-serif text-2xl font-bold text-forest mx-4">Hotel & Restoran</span>
+            <span className="font-serif text-2xl font-bold text-forest mx-4">Distributor Regional</span>
+            <span className="font-serif text-2xl font-bold text-forest mx-4">Mitra Ekspor</span>
+          </div>
+          <div className="animate-marquee whitespace-nowrap flex items-center gap-12 md:gap-24 opacity-60 grayscale transition-all group-hover:grayscale-0 absolute top-0" style={{ transform: 'translateX(100%)' }}>
+            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> Sertifikasi Organik</span>
+            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> BPOM RI Teruji</span>
+            <span className="font-serif text-2xl font-bold text-forest mx-4">Ritel Modern Partner</span>
+            <span className="font-serif text-2xl font-bold text-forest mx-4">Hotel & Restoran</span>
+            <span className="font-serif text-2xl font-bold text-forest mx-4">Distributor Regional</span>
+            <span className="font-serif text-2xl font-bold text-forest mx-4">Mitra Ekspor</span>
           </div>
         </div>
       </section>
@@ -140,16 +151,21 @@ function Homepage() {
           
           <div className="grid md:grid-cols-3 gap-8">
             {products.map(p => (
-              <a href={`/produk#${p.id}`} key={p.id} className="group block bg-white rounded-sm overflow-hidden border border-forest/10 hover:shadow-xl transition-all">
+              <div key={p.id} className="group block bg-white rounded-sm overflow-hidden border border-forest/10 hover:shadow-xl transition-all h-full flex flex-col cursor-pointer" onClick={() => window.location.href = `/produk#${p.id}`}>
                 <div className="h-64 overflow-hidden">
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <div className="p-8">
+                <div className="p-8 flex flex-col h-[calc(100%-16rem)]">
                   <h3 className="text-2xl font-serif font-bold text-forest mb-3">{p.title}</h3>
-                  <p className="text-forest/70 mb-6">{p.desc}</p>
-                  <span className="text-wheat font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Pelajari Lebih Lanjut <ArrowRight size={16}/></span>
+                  <p className="text-forest/70 mb-8 flex-grow">{p.desc}</p>
+                  <div className="flex flex-col gap-3 mt-auto">
+                    <span className="text-wheat font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Pelajari Lebih Lanjut <ArrowRight size={16}/></span>
+                    <a href={`https://wa.me/6285860300111?text=Halo%20Cetrofarm,%20saya%20tertarik%20meminta%20penawaran%20untuk%20produk%20${p.title}.`} target="_blank" rel="noreferrer" onClick={(e) => { e.stopPropagation(); window.dataLayer && window.dataLayer.push({ event: 'click_wa_product', product: p.title }) }} className="w-full text-center py-2 border border-forest/20 text-forest font-bold rounded-sm hover:bg-forest hover:text-cream transition-colors text-sm">
+                      Minta Penawaran (B2B)
+                    </a>
+                  </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
           <div className="mt-8 text-center md:hidden">
