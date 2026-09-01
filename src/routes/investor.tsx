@@ -1,8 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
-import { ArrowRight, Download, Handshake, BarChart3, Users, Leaf, ArrowUpRight, ChevronDown } from 'lucide-react'
+import { Download, Handshake, BarChart3, Users, Leaf, ChevronDown } from 'lucide-react'
 import { TractionChart } from '../components/TractionChart'
 import { saveLead } from '../server/actions'
+
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
 
 export const Route = createFileRoute('/investor')({
   component: InvestorPage,
@@ -49,13 +55,13 @@ function InvestorPage() {
     }
 
     try {
-      const result = await saveLead({
+      const result = await saveLead({ data: {
         name: formData.get('name') as string,
         email: formData.get('email') as string,
         phone: formData.get('phone') as string,
         leadType: 'investor',
         message: `Nominal: ${formData.get('nominal')} - ${formData.get('message')}`,
-      })
+      }})
       
       if (result.success) {
         setFormStatus('success')

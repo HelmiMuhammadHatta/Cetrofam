@@ -3,6 +3,12 @@ import { ArrowRight, Leaf, ShieldCheck, Users, MoveRight, Download } from 'lucid
 import { metrics, products, valueProps, steps, testimonials, articles } from '../data/content'
 import { TractionChart } from '../components/TractionChart'
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 export const Route = createFileRoute('/')({
   component: Homepage,
 })

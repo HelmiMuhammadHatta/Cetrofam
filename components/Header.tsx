@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 
 const NAV = [
@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-forest/10 bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-display text-2xl font-semibold text-forest">
+        <Link to="/" className="font-display text-2xl font-semibold text-forest">
           Cetrofarm
         </Link>
 
@@ -26,7 +26,7 @@ export default function Header() {
           {NAV.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               className="text-sm text-ink/80 transition-colors hover:text-forest"
             >
               {item.label}
@@ -57,7 +57,7 @@ export default function Header() {
           {NAV.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               className="py-2 text-sm text-ink/80"
               onClick={() => setOpen(false)}
             >

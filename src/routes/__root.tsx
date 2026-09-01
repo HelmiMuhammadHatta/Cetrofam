@@ -1,6 +1,6 @@
 import { HeadContent, Scripts, Outlet, createRootRoute } from '@tanstack/react-router'
 import * as React from 'react'
-import { ShieldCheck, Mail } from 'lucide-react'
+import { ShieldCheck } from 'lucide-react'
 import { saveLead } from '../server/actions'
 
 import '../styles.css'
@@ -135,11 +135,11 @@ function NewsletterForm() {
     const formData = new FormData(e.currentTarget)
     
     try {
-      const result = await saveLead({
+      const result = await saveLead({ data: {
         name: 'Newsletter Subscriber',
         email: formData.get('email') as string,
         leadType: 'newsletter',
-      })
+      }})
       
       if (result.success) {
         setStatus('success')
