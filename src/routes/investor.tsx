@@ -1,7 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-start'
 import { Download, CheckCircle, Target, Sprout, TrendingUp, ChevronRight } from 'lucide-react'
+import { useState } from 'react'
 import { investorMetrics, businessModel, roadmap, legalities } from '../data/investor-content'
-// import { TractionChart } from '../components/TractionChart'
+import { PdfDownloadModal } from '../components/PdfDownloadModal'
 
 declare global {
   interface Window {
@@ -22,6 +23,8 @@ export const Route = createFileRoute('/investor')({
 })
 
 function InvestorPage() {
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
+
   return (
     <div className="w-full bg-cream min-h-screen">
       {/* 1. Hero Section */}
@@ -51,14 +54,16 @@ function InvestorPage() {
               >
                 Mulai Diskusi
               </a>
-              <a 
-                href="/assets/company-profile.pdf" 
-                target="_blank"
-                onClick={() => window.dataLayer && window.dataLayer.push({ event: 'download_pitch_deck' })}
+              <button 
+                onClick={(e) => {
+                  e.preventDefault()
+                  if (window.dataLayer) window.dataLayer.push({ event: 'click_download_pitch_deck' })
+                  setIsPdfModalOpen(true)
+                }}
                 className="px-8 py-4 bg-transparent border-2 border-cream/30 text-cream font-bold rounded-sm hover:bg-cream/10 transition-all flex items-center gap-2"
               >
                 <Download size={18}/> Unduh Company Profile (PDF)
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -111,6 +116,12 @@ function InvestorPage() {
           <p>Section 7: CTA Ganda Placeholder</p>
         </div>
       </section>
+
+      <PdfDownloadModal 
+        isOpen={isPdfModalOpen} 
+        onClose={() => setIsPdfModalOpen(false)} 
+        pdfUrl="/assets/company-profile.pdf" 
+      />
     </div>
   )
 }

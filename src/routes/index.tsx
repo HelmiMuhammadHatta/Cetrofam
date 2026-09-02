@@ -1,7 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowRight, Leaf, ShieldCheck, Users, MoveRight, Download } from 'lucide-react'
+import { useState } from 'react'
 import { metrics, products, valueProps, steps, testimonials, articles } from '../data/content'
 import { TractionChart } from '../components/TractionChart'
+import { NewsletterForm } from '../components/NewsletterForm'
+import { PdfDownloadModal } from '../components/PdfDownloadModal'
 
 declare global {
   interface Window {
@@ -11,9 +14,18 @@ declare global {
 
 export const Route = createFileRoute('/')({
   component: Homepage,
+  head: () => ({
+    meta: [
+      { title: 'Cetrofarm | Ekosistem Agrikultur Terintegrasi' },
+      { name: 'description', content: 'Cetrofarm adalah perusahaan agrikultur yang terintegrasi dari hulu ke hilir. Menyediakan bahan pangan berkualitas untuk konsumen, offtaker B2B, dan investor.' },
+      { property: 'og:title', content: 'Cetrofarm | Ekosistem Agrikultur Terintegrasi' },
+    ]
+  })
 })
 
 function Homepage() {
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false)
+
   return (
     <div className="w-full">
       {/* 2. Hero Section */}
@@ -270,9 +282,16 @@ function Homepage() {
               <a href="/investor" className="px-6 py-3 bg-wheat text-forest font-medium rounded-sm hover:bg-white transition-colors">
                 Baca Profil untuk Investor
               </a>
-              <a href="/unduh-cp" className="px-6 py-3 border border-cream/30 text-cream font-medium rounded-sm hover:bg-cream/10 transition-colors flex items-center gap-2">
+              <button 
+                onClick={(e) => {
+                  e.preventDefault()
+                  if (window.dataLayer) window.dataLayer.push({ event: 'click_download_pitch_deck' })
+                  setIsPdfModalOpen(true)
+                }}
+                className="px-6 py-3 border border-cream/30 text-cream font-medium rounded-sm hover:bg-cream/10 transition-colors flex items-center gap-2"
+              >
                 <Download size={18}/> Unduh Company Profile (PDF)
-              </a>
+              </button>
             </div>
           </div>
           <div className="md:w-1/2">
@@ -310,12 +329,15 @@ function Homepage() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl font-serif font-bold mb-4">Tetap Terhubung dengan Inovasi Pangan</h2>
           <p className="mb-8 max-w-xl mx-auto">Dapatkan Katalog Produk, update panen musim ini, dan Ringkasan Investasi langsung ke inbox Anda.</p>
-          <form className="max-w-md mx-auto flex gap-2">
-            <input type="email" placeholder="Alamat Email Anda" required className="flex-1 px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:ring-2 focus:ring-forest bg-white" />
-            <button type="submit" className="px-6 py-3 bg-forest text-cream font-medium rounded-sm hover:bg-forest/90 transition-colors">Dapatkan</button>
-          </form>
+          <NewsletterForm />
         </div>
       </section>
+
+      <PdfDownloadModal 
+        isOpen={isPdfModalOpen} 
+        onClose={() => setIsPdfModalOpen(false)} 
+        pdfUrl="/assets/company-profile.pdf" 
+      />
     </div>
   )
 }
