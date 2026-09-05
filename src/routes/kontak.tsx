@@ -93,8 +93,8 @@ function KontakPage() {
                 <Phone className="text-wheat shrink-0" size={24} />
                 <div>
                   <h3 className="font-bold text-forest">Telepon & WhatsApp</h3>
-                  <p className="text-forest/70 mt-1">Office: (024) 6933 5138</p>
-                  <p className="text-forest/70">WhatsApp: +62 85 8603 00 111</p>
+                  <p className="text-forest/70 mt-1">Office: (024) 6933 5130</p>
+                  <p className="text-forest/70">WhatsApp: +62 85 800 500 111</p>
                 </div>
               </div>
 
@@ -199,7 +199,7 @@ function KontakPage() {
         {/* Embed Google Maps pindah ke bawah */}
         <div className="mt-16 bg-white p-2 rounded-sm border border-forest/10 shadow-sm">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.8572428580663!2d110.413725!3d-7.142345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70870000000000%3A0x1234567890abcdef!2sKecamatan%20Bergas%2C%20Kabupaten%20Semarang!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+            src="https://maps.google.com/maps?q=%20Jl.%20Setro%20Raya%2C%20Desa%20Gondoriyo%2C%20Kecamatan%20Bergas%2C%20Kabupaten%20Semarang&z=15&hl=en&t=m&output=embed&iwloc=near" 
             width="100%" 
             height="400" 
             style={{ border: 0 }} 
