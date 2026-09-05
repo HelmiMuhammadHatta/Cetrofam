@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-start'
+import { createFileRoute } from '@tanstack/react-router'
 import { MapPin, Phone, Mail, Building2 } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'

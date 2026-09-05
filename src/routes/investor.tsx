@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-start'
+import { createFileRoute } from '@tanstack/react-router'
 import { Download, CheckCircle, Target, Sprout, TrendingUp, ChevronRight } from 'lucide-react'
 import { useState } from 'react'
 import { investorMetrics, businessModel, roadmap, legalities } from '../data/investor-content'
