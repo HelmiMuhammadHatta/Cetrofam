@@ -11,13 +11,89 @@ export const Route = createFileRoute('/tentang')({
   })
 })
 
+const team = [
+  {
+    name: "Devi Silvia",
+    role: "CEO",
+    image: "https://cetrofarm.com/home/wp-content/uploads/2023/12/devi-resize.jpg",
+    desc: "Ada pepatah arab yang menarik “Dia yang sehat memiliki harapan; dan dia yang memiliki harapan memiliki segalanya”. Bagian penting menjaga kesehatan adalah terkait makanan yang kita konsumsi sehari-hari. Secara umum makanan yang kita konsumsi masuk kategori sayur-sayuran sebagai sumber vitamin, mineral dan serat. Protein dari daging, susu dan telor, juga kebutuhan pokok lainnya seperti beras dan minyak. Karena konsep kami menyediakan bahan makanan sehat, maka kebutuhan bahan makanan tersebut kami pilih sejak dari ladang ataupun kandang, untuk memastikan prosesnya benar. Meniadakan kandungan bahan beracun dan berbahaya termasuk didalamnya residu pestisida. Mengirimkan sesuai kebutuhan anda, agar makanan yang anda konsumi sehat dan menyehatkan... karena kita semua membutuhkan harapan."
+  },
+  {
+    name: "Nasrudin",
+    role: "Sourcing Manager",
+    image: "https://cetrofarm.com/home/wp-content/uploads/2023/12/nasrudin.jpg",
+    desc: "Saya berlatar belakang pendidikan Industry Tech, mungkin karena itulah saya terbiasa berpikir sistematis dan fokus dalam kualitas. Yang menarik dari produk pertanian adalah tidak seperti dalam pabrikan yang bisa di setting ukuran, model dan bentuknya. Produk pertanian adalah tentang keberagaman yang harus kita syukuri, kita yang harus beradaptasi. Kandungan yang menyehatkan itulah fokus kami. Pemeriksaan secara regular memastikan tidak terdapatnya residu pestisida yang berbahaya dalam produk bahan makanan yang kami kirim. Menjaga kualitas produk dan harmoni dengan alam menjadi ruang pengabdian saya di alam tempat saya mempraktekan ilmu yang saya peroleh di pendidikan."
+  },
+  {
+    name: "Ragil Subarkah",
+    role: "Farm Manager",
+    image: "https://cetrofarm.com/home/wp-content/uploads/2023/12/barkah-2.jpg",
+    desc: "Saya kebagian mengurusi peternakan. Seperti juga mengurusi manusia, kita harus mengenali bahasa hewan. Kapan hewan senang, dan kapan tidak senang, begitu juga jika lapar, kenyang, mengantuk semuanya harus kita kenali. Kenapa? karena kami di Cetro ingin memastikan hewan hidup bahagia; kenapa? Karena melalui ternak ini kami menginginkan produk makanan dari ternak (daging, susu, telor) sampai ditempat anda tidak saja menyehatkan namun berkah. Dengan latar belakang saya dari Fakultas Peternakan Brawijaya, saya ingin memberi pandangan bahwa mengurusi ternak adalah sesuatu yang sangat menyenangkan."
+  },
+  {
+    name: "Sasa",
+    role: "Logistic Head",
+    image: "https://cetrofarm.com/home/wp-content/uploads/2023/12/sasa-logistic-head.jpg",
+    desc: "Memastikan bahwa kiriman untuk anda diterima tepat waktu, lengkap dan sesuai pesanan adalah tanggung jawab saya. Seperti mengurus hamparan padi, ketepatan waktu menanam dan mengairi lahan menjadi kunci. Begitupun mengurusi banyaknya permintaan dan keragaman dari customer harus kami layani dengan cara terbaik. Jadi, jika ada masalah kiriman yang terlambat, tidak lengkap atau salah alamat. Maka sayalah orang tepat anda marahi !!"
+  }
+];
+
 function TentangPage() {
   return (
     <div className="w-full bg-cream min-h-screen pt-32 pb-24">
-      <div className="container mx-auto px-4 max-w-4xl text-center">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-forest mb-6">Tentang Cetrofarm</h1>
-        <p className="text-forest/80 text-lg">Halaman sedang dalam pengembangan.</p>
-      </div>
+      {/* Intro Section */}
+      <section className="container mx-auto px-4 max-w-4xl text-center mb-16">
+        <span className="inline-block px-3 py-1 bg-forest/10 text-forest rounded-sm text-sm font-bold tracking-widest uppercase mb-6">Tentang Kami</span>
+        <h1 className="text-4xl md:text-5xl font-serif font-bold text-forest mb-8 leading-tight">
+          Seperti sayuran yang kita produksi, domba yang kami pelihara, sapi yang menghasilkan susu dan telor dari ayam; <span className="text-wheat italic">kami sangatlah beragam.</span>
+        </h1>
+        <p className="text-forest/80 text-xl leading-relaxed">
+          Dan yang paling penting kami pribadi yang siap berkotor-kotor bersama petani dampingan kami untuk menyiapkan bahan makanan untuk anda.
+        </p>
+      </section>
+
+      {/* Hero Image */}
+      <section className="container mx-auto px-4 max-w-5xl mb-24">
+        <div className="rounded-sm overflow-hidden shadow-2xl relative">
+          <img 
+            src="https://cetrofarm.com/home/wp-content/uploads/2023/11/profil-1024x682.jpeg" 
+            alt="Tim Cetrofarm di Lapangan" 
+            fetchPriority="high"
+            className="w-full h-[300px] md:h-[500px] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent"></div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="container mx-auto px-4 max-w-5xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-forest mb-4">Tim Kami</h2>
+          <div className="w-24 h-1 bg-wheat mx-auto rounded-full"></div>
+        </div>
+
+        <div className="space-y-16 md:space-y-24">
+          {team.map((member, idx) => (
+            <div key={member.name} className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-16`}>
+              <div className="w-48 md:w-64 flex-shrink-0">
+                <img 
+                  src={member.image} 
+                  alt={member.name} 
+                  loading="lazy"
+                  className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-xl border-4 border-wheat/30"
+                />
+              </div>
+              <div className={`flex-1 text-center ${idx % 2 === 1 ? 'md:text-right' : 'md:text-left'}`}>
+                <h3 className="text-2xl font-serif font-bold text-forest mb-1">{member.name}</h3>
+                <span className="inline-block px-3 py-1 bg-wheat/20 text-wheat rounded-sm text-sm font-bold tracking-widest uppercase mb-4">{member.role}</span>
+                <p className="text-forest/80 leading-relaxed text-lg">
+                  {member.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
