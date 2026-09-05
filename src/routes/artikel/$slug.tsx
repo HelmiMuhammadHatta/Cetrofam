@@ -16,13 +16,40 @@ export const Route = createFileRoute('/artikel/$slug')({
         meta: [{ title: 'Artikel Tidak Ditemukan | Cetrofarm' }]
       }
     }
+    const siteUrl = import.meta.env.VITE_SITE_URL || 'https://cetrofarm.com';
+    const articleUrl = `${siteUrl}/artikel/${loaderData.slug}`;
+    const coverImageUrl = loaderData.coverImage?.startsWith('http') 
+      ? loaderData.coverImage 
+      : `${siteUrl}${loaderData.coverImage || '/assets/og-image.png'}`;
+
     return {
       meta: [
         { title: `${loaderData.title} | Cetrofarm` },
         { name: 'description', content: loaderData.excerpt || '' },
         { property: 'og:title', content: `${loaderData.title} | Cetrofarm` },
         { property: 'og:description', content: loaderData.excerpt || '' },
-        { property: 'og:image', content: loaderData.coverImage || '/assets/og-image.jpg' }
+        { property: 'og:image', content: coverImageUrl },
+        { property: 'og:url', content: articleUrl },
+        { property: 'og:type', content: 'article' },
+      ],
+      links: [
+        { rel: 'canonical', href: articleUrl }
+      ],
+      scripts: [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": loaderData.title,
+            "image": [ coverImageUrl ],
+            "datePublished": loaderData.publishedAt,
+            "author": [{
+                "@type": "Person",
+                "name": loaderData.author
+            }]
+          })
+        }
       ]
     }
   }
@@ -42,7 +69,7 @@ function ArtikelDetailPage() {
         </div>
         
         {article.coverImage && (
-          <img src={article.coverImage} alt={article.title} className="w-full h-64 object-cover rounded-sm mb-8" />
+          <img src={article.coverImage} alt={article.title} fetchPriority="high" className="w-full h-64 object-cover rounded-sm mb-8" />
         )}
         
         <div 

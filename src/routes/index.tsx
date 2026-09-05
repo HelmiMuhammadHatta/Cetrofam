@@ -34,6 +34,7 @@ function Homepage() {
           <img 
             src="/assets/hero-panen-golden-hour.png" 
             alt="Petani memanen saat golden hour" 
+            fetchPriority="high"
             className="w-full h-full object-cover opacity-80"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-forest/90 to-forest/20 mix-blend-multiply z-10"></div>
@@ -148,7 +149,7 @@ function Homepage() {
               </div>
             </div>
             <div className="md:w-1/2">
-              <img src="/assets/ilustrasi-rantai-pasok.png" alt="Alur Ekosistem Rantai Pasok" className="rounded-sm w-full shadow-2xl" />
+              <img src="/assets/ilustrasi-rantai-pasok.png" alt="Alur Ekosistem Rantai Pasok" loading="lazy" className="rounded-sm w-full shadow-2xl" />
             </div>
           </div>
         </div>
@@ -171,14 +172,14 @@ function Homepage() {
             {products.map(p => (
               <div key={p.id} className="group block bg-white rounded-sm overflow-hidden border border-forest/10 hover:shadow-xl transition-all h-full flex flex-col cursor-pointer" onClick={() => window.location.href = `/produk#${p.id}`}>
                 <div className="h-64 overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={p.image} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-8 flex flex-col h-[calc(100%-16rem)]">
                   <h3 className="text-2xl font-serif font-bold text-forest mb-3">{p.title}</h3>
                   <p className="text-forest/70 mb-8 flex-grow">{p.desc}</p>
                   <div className="flex flex-col gap-3 mt-auto">
                     <span className="text-wheat font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Pelajari Lebih Lanjut <ArrowRight size={16}/></span>
-                    <a href={`https://wa.me/6285860300111?text=Halo%20Cetrofarm,%20saya%20tertarik%20meminta%20penawaran%20untuk%20produk%20${p.title}.`} target="_blank" rel="noreferrer" onClick={(e) => { e.stopPropagation(); window.dataLayer && window.dataLayer.push({ event: 'click_wa_product', product: p.title }) }} className="w-full text-center py-2 border border-forest/20 text-forest font-bold rounded-sm hover:bg-forest hover:text-cream transition-colors text-sm">
+                    <a href={`https://wa.me/6285860300111?text=${encodeURIComponent(`Halo Cetrofarm, saya tertarik meminta penawaran untuk produk ${p.title}.`)}`} target="_blank" rel="noreferrer" onClick={(e) => { e.stopPropagation(); window.dataLayer && window.dataLayer.push({ event: 'click_wa_product', product: p.title }) }} className="w-full text-center py-2 border border-forest/20 text-forest font-bold rounded-sm hover:bg-forest hover:text-cream transition-colors text-sm">
                       Minta Penawaran (B2B)
                     </a>
                   </div>
@@ -313,7 +314,7 @@ function Homepage() {
             {articles.map((art, idx) => (
               <a href={`/artikel/${art.slug}`} key={idx} className="group block">
                 <div className="overflow-hidden rounded-sm mb-4 h-56 border border-forest/10">
-                  <img src={art.image} alt={art.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+                  <img src={art.image} alt={art.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                 </div>
                 <p className="text-sm text-wheat font-medium mb-2">{art.date}</p>
                 <h3 className="text-xl font-bold text-forest mb-2 group-hover:text-forest/80 transition-colors">{art.title}</h3>

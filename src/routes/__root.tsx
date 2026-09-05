@@ -21,55 +21,59 @@ function NotFound() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { property: 'og:image', content: '/assets/og-image.png' },
-      { property: 'og:title', content: 'Cetrofarm - Agrikultur Terintegrasi Indonesia' },
-      { property: 'og:description', content: 'Cetrofarm merawat rantai pasok pangan dari petani binaan sampai meja konsumen. Memberikan kepastian bagi offtaker dan kesejahteraan bagi petani.' },
-      { name: 'description', content: 'Perusahaan agrikultur terintegrasi yang menghubungkan petani lokal dengan offtaker ritel, hotel, dan restoran. Sertifikasi organik dan standar mutu tinggi.' },
-    ],
-    links: [
-      { rel: 'icon', href: '/assets/favicon.png', type: 'image/png' },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossOrigin: 'anonymous',
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:ital,wght@0,300..900;1,300..900&display=swap',
-      },
-      { rel: 'canonical', href: 'https://cetrofarm.com' }
-    ],
-    scripts: [
-      {
-        type: 'application/ld+json',
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "PT Cetrofarm Pangan Nusantara",
-          "url": "https://cetrofarm.com",
-          "logo": "https://cetrofarm.com/assets/favicon.png",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+62-85-8603-00-111",
-            "contactType": "customer service"
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Jl. Setro Raya, Desa Gondoriyo, Kec. Bergas",
-            "addressLocality": "Semarang",
-            "addressRegion": "Jawa Tengah",
-            "postalCode": "50552",
-            "addressCountry": "ID"
-          }
-        }),
-      },
-    ],
-  }),
+  head: () => {
+    const siteUrl = import.meta.env.VITE_SITE_URL || 'https://cetrofarm.com';
+    return {
+      meta: [
+        { charSet: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { property: 'og:image', content: `${siteUrl}/assets/og-image.png` },
+        { property: 'og:title', content: 'Cetrofarm - Agrikultur Terintegrasi Indonesia' },
+        { property: 'og:description', content: 'Cetrofarm merawat rantai pasok pangan dari petani binaan sampai meja konsumen. Memberikan kepastian bagi offtaker dan kesejahteraan bagi petani.' },
+        { name: 'description', content: 'Perusahaan agrikultur terintegrasi yang menghubungkan petani lokal dengan offtaker ritel, hotel, dan restoran. Sertifikasi organik dan standar mutu tinggi.' },
+      ],
+      links: [
+        { rel: 'icon', href: '/assets/favicon.png', type: 'image/png' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossOrigin: 'anonymous',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:ital,wght@0,300..900;1,300..900&display=swap',
+        },
+        { rel: 'canonical', href: siteUrl }
+      ],
+      scripts: [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "PT Cetrofarm Pangan Nusantara",
+            "url": siteUrl,
+            "logo": `${siteUrl}/assets/favicon.png`,
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+62-85-8603-00-111",
+              "email": "info@cetrofarm.com",
+              "contactType": "customer service"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Jl. Setro Raya, Desa Gondoriyo, Kec. Bergas",
+              "addressLocality": "Semarang",
+              "addressRegion": "Jawa Tengah",
+              "postalCode": "50552",
+              "addressCountry": "ID"
+            }
+          }),
+        },
+      ],
+    };
+  },
   component: RootComponent,
   notFoundComponent: NotFound,
 })
@@ -225,8 +229,8 @@ function Footer() {
       <div className="container mx-auto px-4 mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-4 text-cream/50 text-sm">
         <p>&copy; {new Date().getFullYear()} PT Cetrofarm Pangan Nusantara. Hak Cipta Dilindungi.</p>
         <div className="flex gap-4">
-          <a href="#" className="hover:text-cream transition-colors">Syarat & Ketentuan</a>
-          <a href="#" className="hover:text-cream transition-colors">Kebijakan Privasi</a>
+          <a href="/syarat-ketentuan" className="hover:text-cream transition-colors">Syarat & Ketentuan</a>
+          <a href="/kebijakan-privasi" className="hover:text-cream transition-colors">Kebijakan Privasi</a>
         </div>
       </div>
     </footer>
