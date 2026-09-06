@@ -109,10 +109,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
 function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-cream/20 bg-cream/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-forest/20 bg-forest text-cream">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <a href="/" className="block hover:opacity-80 transition-opacity">
-          <img src="/assets/logo.png" alt="Cetrofarm" className="h-8 md:h-12 w-auto object-contain" />
+          <img src="/assets/logo.png" alt="Cetrofarm" className="h-12 md:h-16 w-auto object-contain" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="/tentang" className="hover:text-wheat transition-colors">Tentang</a>
@@ -124,7 +124,7 @@ function Navbar() {
           <a href="/faq" className="hover:text-wheat transition-colors">FAQ</a>
         </nav>
         <div className="flex items-center gap-4">
-          <a href="/investor" className="hidden lg:inline-flex px-5 py-2.5 bg-forest text-cream rounded-sm hover:bg-forest/90 transition-all font-bold text-sm">
+          <a href="/investor" className="hidden lg:inline-flex px-5 py-2.5 bg-cream text-forest rounded-sm hover:bg-wheat transition-all font-bold text-sm">
             Kemitraan B2B
           </a>
         </div>

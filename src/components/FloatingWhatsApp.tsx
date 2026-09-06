@@ -60,7 +60,7 @@ export function FloatingWhatsApp() {
         className="relative group pointer-events-auto inline-block animate-pop-in opacity-0"
         aria-label="Chat via WhatsApp"
       >
-        <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110 drop-shadow-2xl">
+        <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110 drop-shadow-2xl">
           <img 
             src="/mascot/mascot-chat.png" 
             alt="Cetro Mascot" 
