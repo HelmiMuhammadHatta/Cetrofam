@@ -5,19 +5,18 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import { nitro } from 'nitro/vite'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
   plugins: [
     devtools(),
-    nitro({ 
-      preset: 'static',
-      prerender: { crawlLinks: true, routes: ['/'] },
-      rollupConfig: { external: [/^@sentry\//] } 
-    }),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      server: {
+        preset: 'static',
+        prerender: { crawlLinks: true, routes: ['/'] },
+      }
+    }),
     viteReact(),
   ],
 })
