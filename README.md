@@ -42,12 +42,29 @@ Sistem routing menggunakan [TanStack React Router](https://tanstack.com/router) 
 - `/kontak` — Hubungi Kami
 - `/$` — Halaman 404 (Not Found) / Catch-all
 
+## Membuka Versi Build Statis (Static Export) Secara Manual
+
+Karena project ini sudah dikonfigurasi untuk di-hosting di *shared hosting* (seperti cPanel/Rumahweb), hasil akhir *build* berupa **file HTML statis**. Untuk melihat dan menguji hasilnya secara lokal sebelum diunggah ke hosting:
+
+1. **Jalankan Build Statis:**
+   ```bash
+   npm run build
+   ```
+   *Perintah ini akan memproduksi semua halaman HTML ke dalam folder `.output/public`.*
+
+2. **Buka / Jalankan Secara Lokal:**
+   Gunakan server statis sederhana seperti `serve` via `npx` (agar Anda bisa mengecek URL tanpa node server):
+   ```bash
+   npx serve .output/public
+   ```
+   *Buka URL yang muncul di terminal (biasanya `http://localhost:3000`) pada browser.*
+
 ## Scripts Tersedia
 
-- `npm run dev` - Menjalankan server lokal (Vite) di port 3000.
+- `npm run dev` - Menjalankan server lokal (Vite) untuk *development*.
 - `npm run generate-routes` - Melakukan *generate* otomatis untuk tipe routes (`tsr generate`) dari TanStack Router.
-- `npm run build` - Melakukan *build* aplikasi untuk production.
-- `npm run preview` - Melakukan *preview* dari hasil build production.
+- `npm run build` - Melakukan *build* aplikasi sebagai file HTML statis siap *deploy* (ke folder `.output/public`).
+- `npm run preview` - Melakukan *preview* dari hasil build (sama seperti menjalankan npx serve secara manual).
 
 ## Yang Perlu Diperhatikan / To-Do
 1. **Database:** Pastikan *connection string* ke database PostgreSQL sudah dikonfigurasi dengan benar (biasanya via `.env`) untuk kebutuhan Drizzle ORM.
