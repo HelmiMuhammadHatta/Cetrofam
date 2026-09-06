@@ -92,6 +92,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="id">
       <head>
         <HeadContent />
+        <script src="https://forminit.com/sdk/v1/forminit.js"></script>
       </head>
       <body>
         <Navbar />
@@ -110,8 +111,8 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-cream/20 bg-cream/90 backdrop-blur-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <a href="/" className="block bg-forest rounded-full px-5 py-2 hover:bg-forest/90 transition-colors shadow-sm">
-          <img src="/assets/logo.webp" alt="Cetrofarm" className="h-8 md:h-10 w-auto object-contain" />
+        <a href="/" className="block hover:opacity-80 transition-opacity">
+          <img src="/assets/logo.webp" alt="Cetrofarm" className="h-8 md:h-10 w-auto object-contain brightness-0" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="/tentang" className="hover:text-wheat transition-colors">Tentang</a>
@@ -133,24 +134,58 @@ function Navbar() {
 }
 
 function NewsletterForm() {
-  const formEndpoint = import.meta.env.VITE_FORM_ENDPOINT || '#'
+  const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = React.useState('')
+  
+  const FORM_ID = "h1z6x0p2wu6"
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setStatus('loading')
+    
+    try {
+      // @ts-ignore
+      const forminit = new window.Forminit()
+      const formData = new FormData(e.currentTarget)
+      
+      const { error } = await forminit.submit(FORM_ID, formData)
+      
+      if (error) {
+        setStatus('error')
+        setErrorMessage(error.message)
+      } else {
+        setStatus('success')
+        e.currentTarget.reset()
+      }
+    } catch (err) {
+      setStatus('error')
+      setErrorMessage('Terjadi kesalahan jaringan.')
+    }
+  }
 
   return (
-    <form action={formEndpoint} method="POST" className="flex gap-2 relative">
-      <input type="hidden" name="form_type" value="Newsletter" />
+    <form onSubmit={handleSubmit} className="flex gap-2 relative">
+      <input type="hidden" name="fi-sender-userId" value="newsletter" />
       <input 
         type="email" 
-        name="email"
+        name="fi-sender-email"
         required
         placeholder="Email Anda" 
         className="px-4 py-2 w-full text-forest rounded-sm bg-cream focus:outline-none focus:ring-2 focus:ring-wheat" 
       />
       <button 
         type="submit" 
-        className="px-4 py-2 bg-wheat text-forest font-bold rounded-sm hover:bg-white transition-colors"
+        disabled={status === 'loading'}
+        className="px-4 py-2 bg-wheat text-forest font-bold rounded-sm hover:bg-white transition-colors disabled:opacity-70"
       >
-        Kirim
+        {status === 'loading' ? '...' : 'Kirim'}
       </button>
+      {status === 'success' && (
+        <p className="absolute -bottom-6 text-xs text-wheat font-bold">Terima kasih telah berlangganan!</p>
+      )}
+      {status === 'error' && (
+        <p className="absolute -bottom-6 text-xs text-red-400 font-bold">{errorMessage}</p>
+      )}
     </form>
   )
 }

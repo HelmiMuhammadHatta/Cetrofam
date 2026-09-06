@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { useState } from 'react'
 import { MapPin, Phone, Mail, Building2 } from 'lucide-react'
 
 export const Route = createFileRoute('/kontak')({
@@ -14,6 +15,34 @@ export const Route = createFileRoute('/kontak')({
 })
 
 function KontakPage() {
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const FORM_ID = "h1z6x0p2wu6"
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setSubmitStatus('loading')
+    
+    try {
+      // @ts-ignore
+      const forminit = new window.Forminit()
+      const formData = new FormData(e.currentTarget)
+      
+      const { error } = await forminit.submit(FORM_ID, formData)
+      
+      if (error) {
+        setSubmitStatus('error')
+        setErrorMessage(error.message)
+      } else {
+        setSubmitStatus('success')
+        e.currentTarget.reset()
+      }
+    } catch (err) {
+      setSubmitStatus('error')
+      setErrorMessage('Terjadi kesalahan jaringan.')
+    }
+  }
 
   return (
     <div className="w-full bg-cream min-h-screen pt-24 pb-20">
@@ -67,14 +96,26 @@ function KontakPage() {
           <div className="bg-white p-8 rounded-sm border border-forest/10 shadow-lg">
             <h2 className="text-2xl font-serif font-bold text-forest mb-6">Tinggalkan Pesan</h2>
             
-            <form action={import.meta.env.VITE_FORM_ENDPOINT || '#'} method="POST" className="space-y-4">
-              <input type="hidden" name="form_type" value="Kontak" />
-              
-              <div>
+            {submitStatus === 'success' ? (
+              <div className="bg-wheat/20 p-6 rounded-sm text-center">
+                <h3 className="font-bold text-forest text-xl mb-2">Pesan Terkirim!</h3>
+                <p className="text-forest/70 mb-4">Terima kasih telah menghubungi Cetrofarm. Tim kami akan merespons dalam 1x24 jam.</p>
+                <button 
+                  onClick={() => setSubmitStatus('idle')}
+                  className="px-6 py-2 bg-forest text-cream rounded-sm font-medium hover:bg-forest/90"
+                >
+                  Kirim Pesan Lain
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <input type="hidden" name="fi-sender-userId" value="kontak" />
+                
+                <div>
                   <label className="block text-sm font-bold mb-1 text-forest">Nama Lengkap *</label>
                   <input 
                     type="text" 
-                    name="name"
+                    name="fi-sender-fullName"
                     required
                     className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30" 
                   />
@@ -85,7 +126,7 @@ function KontakPage() {
                     <label className="block text-sm font-bold mb-1 text-forest">Email *</label>
                     <input 
                       type="email" 
-                      name="email"
+                      name="fi-sender-email"
                       required
                       className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30" 
                     />
@@ -94,7 +135,7 @@ function KontakPage() {
                     <label className="block text-sm font-bold mb-1 text-forest">No. Telepon</label>
                     <input 
                       type="tel" 
-                      name="phone"
+                      name="fi-sender-phone"
                       className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30" 
                     />
                   </div>
@@ -103,7 +144,7 @@ function KontakPage() {
                 <div>
                   <label className="block text-sm font-bold mb-1 text-forest">Kategori Pertanyaan *</label>
                   <select 
-                    name="category"
+                    name="fi-select-category"
                     required
                     className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30"
                   >
@@ -118,20 +159,26 @@ function KontakPage() {
                 <div>
                   <label className="block text-sm font-bold mb-1 text-forest">Pesan Anda *</label>
                   <textarea 
-                    name="message"
+                    name="fi-text-message"
                     required
                     rows={4} 
                     className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30"
                   ></textarea>
                 </div>
 
+                {submitStatus === 'error' && (
+                  <p className="text-red-600 text-sm font-bold">{errorMessage}</p>
+                )}
+
                 <button 
                   type="submit" 
-                  className="w-full py-4 bg-wheat text-forest font-bold rounded-sm hover:bg-wheat/80 transition-colors"
+                  disabled={submitStatus === 'loading'}
+                  className="w-full py-4 bg-wheat text-forest font-bold rounded-sm hover:bg-wheat/80 transition-colors disabled:opacity-50"
                 >
-                  Kirim Pesan
+                  {submitStatus === 'loading' ? 'Mengirim...' : 'Kirim Pesan'}
                 </button>
               </form>
+            )}
           </div>
         </div>
 
