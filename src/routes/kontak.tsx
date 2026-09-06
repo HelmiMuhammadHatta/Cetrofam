@@ -1,10 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { MapPin, Phone, Mail, Building2 } from 'lucide-react'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { saveLead } from '../server/actions'
 
 export const Route = createFileRoute('/kontak')({
   component: KontakPage,
@@ -18,47 +13,7 @@ export const Route = createFileRoute('/kontak')({
   }),
 })
 
-const contactSchema = z.object({
-  name: z.string().min(1, 'Nama wajib diisi'),
-  email: z.string().email('Format email tidak valid'),
-  phone: z.string().optional(),
-  category: z.string().min(1, 'Pilih kategori'),
-  message: z.string().min(10, 'Pesan minimal 10 karakter'),
-})
-
-type ContactFormData = z.infer<typeof contactSchema>
-
 function KontakPage() {
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
-
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema)
-  })
-
-  const onSubmit = async (data: ContactFormData) => {
-    setSubmitStatus('loading')
-    try {
-      const result = await saveLead({ data: {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        leadType: 'contact',
-        message: `[Kategori: ${data.category}] ${data.message}`
-      }})
-      
-      if (result.success) {
-        setSubmitStatus('success')
-        reset()
-      } else {
-        setSubmitStatus('error')
-        setErrorMessage(result.error || 'Terjadi kesalahan.')
-      }
-    } catch (err) {
-      setSubmitStatus('error')
-      setErrorMessage('Terjadi kesalahan jaringan.')
-    }
-  }
 
   return (
     <div className="w-full bg-cream min-h-screen pt-24 pb-20">
@@ -112,27 +67,17 @@ function KontakPage() {
           <div className="bg-white p-8 rounded-sm border border-forest/10 shadow-lg">
             <h2 className="text-2xl font-serif font-bold text-forest mb-6">Tinggalkan Pesan</h2>
             
-            {submitStatus === 'success' ? (
-              <div className="bg-wheat/20 p-6 rounded-sm text-center">
-                <h3 className="font-bold text-forest text-xl mb-2">Pesan Terkirim!</h3>
-                <p className="text-forest/70 mb-4">Terima kasih telah menghubungi Cetrofarm. Tim kami akan merespons dalam 1x24 jam.</p>
-                <button 
-                  onClick={() => { setSubmitStatus('idle'); reset(); }}
-                  className="px-6 py-2 bg-forest text-cream rounded-sm font-medium hover:bg-forest/90"
-                >
-                  Kirim Pesan Lain
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div>
+            <form action={import.meta.env.VITE_FORM_ENDPOINT || '#'} method="POST" className="space-y-4">
+              <input type="hidden" name="form_type" value="Kontak" />
+              
+              <div>
                   <label className="block text-sm font-bold mb-1 text-forest">Nama Lengkap *</label>
                   <input 
                     type="text" 
-                    {...register('name')}
+                    name="name"
+                    required
                     className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30" 
                   />
-                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message as string}</p>}
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
@@ -140,16 +85,16 @@ function KontakPage() {
                     <label className="block text-sm font-bold mb-1 text-forest">Email *</label>
                     <input 
                       type="email" 
-                      {...register('email')}
+                      name="email"
+                      required
                       className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30" 
                     />
-                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message as string}</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-bold mb-1 text-forest">No. Telepon</label>
                     <input 
                       type="tel" 
-                      {...register('phone')}
+                      name="phone"
                       className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30" 
                     />
                   </div>
@@ -158,7 +103,8 @@ function KontakPage() {
                 <div>
                   <label className="block text-sm font-bold mb-1 text-forest">Kategori Pertanyaan *</label>
                   <select 
-                    {...register('category')}
+                    name="category"
+                    required
                     className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30"
                   >
                     <option value="">Pilih Kategori</option>
@@ -167,32 +113,25 @@ function KontakPage() {
                     <option value="Investor">Peluang Investasi</option>
                     <option value="Lainnya">Lainnya</option>
                   </select>
-                  {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category.message as string}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-bold mb-1 text-forest">Pesan Anda *</label>
                   <textarea 
-                    {...register('message')}
+                    name="message"
+                    required
                     rows={4} 
                     className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30"
                   ></textarea>
-                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message as string}</p>}
                 </div>
-                
-                {submitStatus === 'error' && (
-                  <p className="text-red-600 text-sm font-bold">{errorMessage}</p>
-                )}
 
                 <button 
                   type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full py-4 bg-wheat text-forest font-bold rounded-sm hover:bg-wheat/80 transition-colors disabled:opacity-50"
+                  className="w-full py-4 bg-wheat text-forest font-bold rounded-sm hover:bg-wheat/80 transition-colors"
                 >
-                  {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
+                  Kirim Pesan
                 </button>
               </form>
-            )}
           </div>
         </div>
 

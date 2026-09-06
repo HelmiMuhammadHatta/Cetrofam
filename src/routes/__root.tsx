@@ -133,33 +133,11 @@ function Navbar() {
 }
 
 function NewsletterForm() {
-  const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setStatus('loading')
-    const formData = new FormData(e.currentTarget)
-    
-    try {
-      const result = await saveLead({ data: {
-        name: 'Newsletter Subscriber',
-        email: formData.get('email') as string,
-        leadType: 'newsletter',
-      }})
-      
-      if (result.success) {
-        setStatus('success')
-        e.currentTarget.reset()
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
-  }
+  const formEndpoint = import.meta.env.VITE_FORM_ENDPOINT || '#'
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 relative">
+    <form action={formEndpoint} method="POST" className="flex gap-2 relative">
+      <input type="hidden" name="form_type" value="Newsletter" />
       <input 
         type="email" 
         name="email"
@@ -169,17 +147,10 @@ function NewsletterForm() {
       />
       <button 
         type="submit" 
-        disabled={status === 'loading'}
-        className="px-4 py-2 bg-wheat text-forest font-bold rounded-sm hover:bg-white transition-colors disabled:opacity-70"
+        className="px-4 py-2 bg-wheat text-forest font-bold rounded-sm hover:bg-white transition-colors"
       >
-        {status === 'loading' ? '...' : 'Kirim'}
+        Kirim
       </button>
-      {status === 'success' && (
-        <p className="absolute -bottom-6 text-xs text-wheat font-bold">Terima kasih telah berlangganan!</p>
-      )}
-      {status === 'error' && (
-        <p className="absolute -bottom-6 text-xs text-red-400 font-bold">Terjadi kesalahan. Coba lagi.</p>
-      )}
     </form>
   )
 }

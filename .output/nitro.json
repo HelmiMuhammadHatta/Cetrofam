@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-01T08:15:59.354Z",
-  "preset": "node-server",
+  "date": "2026-09-06T01:58:12.973Z",
+  "preset": "nitro-prerender",
   "framework": {
     "name": "nitro",
     "version": "3.0.260610-beta"
@@ -8,10 +8,10 @@
   "versions": {
     "nitro": "3.0.260610-beta"
   },
-  "serverEntry": "server/index.mjs",
+  "serverEntry": "../node_modules/.nitro/prerender/index.mjs",
   "publicDir": "public",
   "commands": {
-    "preview": "node ./server/index.mjs"
+    "preview": "npx serve ./public"
   },
   "config": {}
 }

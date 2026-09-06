@@ -71,19 +71,19 @@ export const testimonials = [
 export const articles = [
   {
     title: "Masa Depan Pertanian Organik di Jawa Tengah",
-    slug: "masa-depan-pertanian-organik",
+    slug: "agrikultur-terintegrasi-era-modern",
     image: "/assets/artikel-1.webp",
     date: "12 Ags 2026"
   },
   {
     title: "Mengenal Beras Rindjing: Varian Unggulan",
-    slug: "mengenal-beras-rindjing",
+    slug: "ekosistem-beras-berkualitas-pemberdayaan-petani",
     image: "/assets/artikel-2.webp",
     date: "05 Ags 2026"
   },
   {
     title: "Pentingnya Traceability dalam Rantai Pasok Pangan",
-    slug: "traceability-rantai-pasok",
+    slug: "traceability-rantai-pasok-standar-b2b",
     image: "/assets/artikel-3.webp",
     date: "28 Jul 2026"
   }

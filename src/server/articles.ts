@@ -5,8 +5,6 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 
-const articlesDirectory = path.join(process.cwd(), 'content', 'articles')
-
 export type ArticleFrontmatter = {
   title: string
   slug: string
@@ -22,28 +20,18 @@ export type Article = ArticleFrontmatter & {
   contentHtml: string
 }
 
-// TODO: Upgrade to External Headless CMS (Sanity/Contentful)
-// When article volume grows or visual editor is needed, replace this logic
-// to fetch from Sanity/Contentful API instead of local markdown files.
+// Use Vite's import.meta.glob to bundle markdown files directly, avoiding fs/cwd issues during SSR/Prerender
+const articleFiles = import.meta.glob('../../content/articles/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+const articleMdxFiles = import.meta.glob('../../content/articles/*.mdx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+
+const allFiles = { ...articleFiles, ...articleMdxFiles };
 
 export const getArticles = createServerFn({ method: 'GET' })
   .handler(async () => {
-    // Check if directory exists
-    if (!fs.existsSync(articlesDirectory)) {
-      return []
-    }
-
-    const fileNames = fs.readdirSync(articlesDirectory)
-    const allArticles = fileNames
-      .filter((fileName) => fileName.endsWith('.md') || fileName.endsWith('.mdx'))
-      .map((fileName) => {
-        const fullPath = path.join(articlesDirectory, fileName)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-
-        const matterResult = matter(fileContents)
-
-        return matterResult.data as ArticleFrontmatter
-      })
+    const allArticles = Object.entries(allFiles).map(([path, fileContents]) => {
+      const matterResult = matter(fileContents)
+      return matterResult.data as ArticleFrontmatter
+    })
 
     // Sort articles by date
     return allArticles.sort((a, b) => {
@@ -60,17 +48,14 @@ export const getArticleBySlug = createServerFn({ method: 'GET' })
   .handler(async (ctx) => {
     const slug = ctx.data
     
-    // Check possible extensions
-    let fullPath = path.join(articlesDirectory, `${slug}.md`)
-    if (!fs.existsSync(fullPath)) {
-      fullPath = path.join(articlesDirectory, `${slug}.mdx`)
-    }
+    // Find the matching file
+    const fileKey = Object.keys(allFiles).find(key => key.endsWith(`/${slug}.md`) || key.endsWith(`/${slug}.mdx`))
     
-    if (!fs.existsSync(fullPath)) {
-      throw new Error('Article not found')
+    if (!fileKey) {
+      throw new Error(`Article not found: ${slug}`)
     }
 
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
+    const fileContents = allFiles[fileKey];
     const matterResult = matter(fileContents)
 
     // Process markdown to HTML
