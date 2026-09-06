@@ -108,8 +108,8 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-cream/20 bg-cream/90 backdrop-blur-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <a href="/" className="text-2xl font-serif text-forest font-bold tracking-tight">
-          Cetrofarm<span className="text-wheat">.</span>
+        <a href="/" className="block">
+          <img src="/assets/logo.png" alt="Cetrofarm" className="h-10 w-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="/tentang" className="hover:text-wheat transition-colors">Tentang</a>
@@ -187,7 +187,9 @@ function Footer() {
     <footer className="bg-forest text-cream py-16">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
-          <h2 className="text-3xl font-serif font-bold mb-4">Cetrofarm<span className="text-wheat">.</span></h2>
+          <a href="/" className="block mb-6">
+            <img src="/assets/logo.png" alt="Cetrofarm" className="h-12 w-auto" />
+          </a>
           <p className="text-cream/80 text-sm leading-relaxed mb-6">
             bringing nature inside.<br/>
             Merawat rantai pasok pangan dari petani binaan sampai meja keluarga Anda, sejak 2018.
@@ -205,8 +207,8 @@ function Footer() {
           <h3 className="font-serif text-xl mb-4 text-wheat">Kontak Kami</h3>
           <address className="not-italic text-cream/80 text-sm space-y-3">
             <p>Jl. Setro Raya, Desa Gondoriyo,<br/>Kec. Bergas, Kab. Semarang</p>
-            <p>024 6933 5138</p>
-            <p>+62 85 8603 00 111</p>
+            <p>(024) 6933 5130</p>
+            <p>+62 85 800 500 111</p>
             <p>customerrelation@cetrofarm.com</p>
           </address>
         </div>
