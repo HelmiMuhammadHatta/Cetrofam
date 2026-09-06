@@ -108,8 +108,8 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-cream/20 bg-cream/90 backdrop-blur-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <a href="/" className="block py-2">
-          <img src="/assets/logo.png" alt="Cetrofarm" className="h-12 md:h-16 w-auto object-contain" />
+        <a href="/" className="block bg-forest rounded-full px-5 py-2 hover:bg-forest/90 transition-colors shadow-sm">
+          <img src="/assets/logo.png" alt="Cetrofarm" className="h-8 md:h-10 w-auto object-contain" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="/tentang" className="hover:text-wheat transition-colors">Tentang</a>
