@@ -10,13 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SplatRouteImport } from './routes/$'
+import { Route as EkosistemRouteImport } from './routes/ekosistem'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as InvestorRouteImport } from './routes/investor'
+import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as ProdukRouteImport } from './routes/produk'
+import { Route as SyaratKetentuanRouteImport } from './routes/syarat-ketentuan'
+import { Route as TentangRouteImport } from './routes/tentang'
+import { Route as ArtikelIndexRouteImport } from './routes/artikel/index'
+import { Route as ArtikelSlugRouteImport } from './routes/artikel/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EkosistemRoute = EkosistemRouteImport.update({
+  id: '/ekosistem',
+  path: '/ekosistem',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -29,44 +47,143 @@ const InvestorRoute = InvestorRouteImport.update({
   path: '/investor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KebijakanPrivasiRoute = KebijakanPrivasiRouteImport.update({
+  id: '/kebijakan-privasi',
+  path: '/kebijakan-privasi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KontakRoute = KontakRouteImport.update({
   id: '/kontak',
   path: '/kontak',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProdukRoute = ProdukRouteImport.update({
+  id: '/produk',
+  path: '/produk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SyaratKetentuanRoute = SyaratKetentuanRouteImport.update({
+  id: '/syarat-ketentuan',
+  path: '/syarat-ketentuan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TentangRoute = TentangRouteImport.update({
+  id: '/tentang',
+  path: '/tentang',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtikelIndexRoute = ArtikelIndexRouteImport.update({
+  id: '/artikel/',
+  path: '/artikel/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtikelSlugRoute = ArtikelSlugRouteImport.update({
+  id: '/artikel/$slug',
+  path: '/artikel/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/ekosistem': typeof EkosistemRoute
   '/faq': typeof FaqRoute
   '/investor': typeof InvestorRoute
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
+  '/produk': typeof ProdukRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
+  '/tentang': typeof TentangRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
+  '/artikel/': typeof ArtikelIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/ekosistem': typeof EkosistemRoute
   '/faq': typeof FaqRoute
   '/investor': typeof InvestorRoute
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
+  '/produk': typeof ProdukRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
+  '/tentang': typeof TentangRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
+  '/artikel': typeof ArtikelIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/ekosistem': typeof EkosistemRoute
   '/faq': typeof FaqRoute
   '/investor': typeof InvestorRoute
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
+  '/produk': typeof ProdukRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
+  '/tentang': typeof TentangRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
+  '/artikel/': typeof ArtikelIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/faq' | '/investor' | '/kontak'
+  fullPaths:
+    | '/'
+    | '/$'
+    | '/ekosistem'
+    | '/faq'
+    | '/investor'
+    | '/kebijakan-privasi'
+    | '/kontak'
+    | '/produk'
+    | '/syarat-ketentuan'
+    | '/tentang'
+    | '/artikel/$slug'
+    | '/artikel/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/faq' | '/investor' | '/kontak'
-  id: '__root__' | '/' | '/faq' | '/investor' | '/kontak'
+  to:
+    | '/'
+    | '/$'
+    | '/ekosistem'
+    | '/faq'
+    | '/investor'
+    | '/kebijakan-privasi'
+    | '/kontak'
+    | '/produk'
+    | '/syarat-ketentuan'
+    | '/tentang'
+    | '/artikel/$slug'
+    | '/artikel'
+  id:
+    | '__root__'
+    | '/'
+    | '/$'
+    | '/ekosistem'
+    | '/faq'
+    | '/investor'
+    | '/kebijakan-privasi'
+    | '/kontak'
+    | '/produk'
+    | '/syarat-ketentuan'
+    | '/tentang'
+    | '/artikel/$slug'
+    | '/artikel/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
+  EkosistemRoute: typeof EkosistemRoute
   FaqRoute: typeof FaqRoute
   InvestorRoute: typeof InvestorRoute
+  KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KontakRoute: typeof KontakRoute
+  ProdukRoute: typeof ProdukRoute
+  SyaratKetentuanRoute: typeof SyaratKetentuanRoute
+  TentangRoute: typeof TentangRoute
+  ArtikelSlugRoute: typeof ArtikelSlugRoute
+  ArtikelIndexRoute: typeof ArtikelIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +193,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ekosistem': {
+      id: '/ekosistem'
+      path: '/ekosistem'
+      fullPath: '/ekosistem'
+      preLoaderRoute: typeof EkosistemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -92,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InvestorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kebijakan-privasi': {
+      id: '/kebijakan-privasi'
+      path: '/kebijakan-privasi'
+      fullPath: '/kebijakan-privasi'
+      preLoaderRoute: typeof KebijakanPrivasiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kontak': {
       id: '/kontak'
       path: '/kontak'
@@ -99,14 +237,57 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontakRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/produk': {
+      id: '/produk'
+      path: '/produk'
+      fullPath: '/produk'
+      preLoaderRoute: typeof ProdukRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/syarat-ketentuan': {
+      id: '/syarat-ketentuan'
+      path: '/syarat-ketentuan'
+      fullPath: '/syarat-ketentuan'
+      preLoaderRoute: typeof SyaratKetentuanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tentang': {
+      id: '/tentang'
+      path: '/tentang'
+      fullPath: '/tentang'
+      preLoaderRoute: typeof TentangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artikel/': {
+      id: '/artikel/'
+      path: '/artikel'
+      fullPath: '/artikel/'
+      preLoaderRoute: typeof ArtikelIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artikel/$slug': {
+      id: '/artikel/$slug'
+      path: '/artikel/$slug'
+      fullPath: '/artikel/$slug'
+      preLoaderRoute: typeof ArtikelSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
+  EkosistemRoute: EkosistemRoute,
   FaqRoute: FaqRoute,
   InvestorRoute: InvestorRoute,
+  KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KontakRoute: KontakRoute,
+  ProdukRoute: ProdukRoute,
+  SyaratKetentuanRoute: SyaratKetentuanRoute,
+  TentangRoute: TentangRoute,
+  ArtikelSlugRoute: ArtikelSlugRoute,
+  ArtikelIndexRoute: ArtikelIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
