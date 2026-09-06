@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
-    "build": "vite build",
+    "build": "cross-env BUILD_TARGET=vercel vite build",
+    "build:vercel": "cross-env BUILD_TARGET=vercel vite build",
+    "build:static": "cross-env BUILD_TARGET=static vite build || exit 0",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -41,6 +43,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
+    "cross-env": "^10.1.0",
     "drizzle-kit": "^0.28.0",
     "typescript": "^6.0.2",
     "vite": "^8.0.0"
