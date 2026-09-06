@@ -112,7 +112,7 @@ function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-forest/20 bg-forest text-cream">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <a href="/" className="block hover:opacity-80 transition-opacity">
-          <img src="/assets/logo.png" alt="Cetrofarm" className="h-12 md:h-16 w-auto object-contain" />
+          <img src="/assets/CETRALOG.png" alt="Cetrofarm" className="h-12 md:h-16 w-auto object-contain" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="/tentang" className="hover:text-wheat transition-colors">Tentang</a>
@@ -136,20 +136,20 @@ function Navbar() {
 function NewsletterForm() {
   const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = React.useState('')
-  
+
   const FORM_ID = "h1z6x0p2wu6"
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('loading')
-    
+
     try {
       // @ts-ignore
       const forminit = new window.Forminit()
       const formData = new FormData(e.currentTarget)
-      
+
       const { error } = await forminit.submit(FORM_ID, formData)
-      
+
       if (error) {
         setStatus('error')
         setErrorMessage(error.message)
@@ -166,15 +166,15 @@ function NewsletterForm() {
   return (
     <form onSubmit={handleSubmit} className="flex gap-2 relative">
       <input type="hidden" name="fi-sender-userId" value="newsletter" />
-      <input 
-        type="email" 
+      <input
+        type="email"
         name="fi-sender-email"
         required
-        placeholder="Email Anda" 
-        className="px-4 py-2 w-full text-forest rounded-sm bg-cream focus:outline-none focus:ring-2 focus:ring-wheat" 
+        placeholder="Email Anda"
+        className="px-4 py-2 w-full text-forest rounded-sm bg-cream focus:outline-none focus:ring-2 focus:ring-wheat"
       />
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         disabled={status === 'loading'}
         className="px-4 py-2 bg-wheat text-forest font-bold rounded-sm hover:bg-white transition-colors disabled:opacity-70"
       >
@@ -196,25 +196,25 @@ function Footer() {
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
           <a href="/" className="block mb-6">
-            <img src="/assets/logo.png" alt="Cetrofarm" className="h-16 md:h-20 w-auto object-contain" />
+            <img src="/assets/CETRALOG.png" alt="Cetrofarm" className="h-16 md:h-20 w-auto object-contain" />
           </a>
           <p className="text-cream/80 text-sm leading-relaxed mb-6">
-            bringing nature inside.<br/>
+            bringing nature inside.<br />
             Merawat rantai pasok pangan dari petani binaan sampai meja keluarga Anda, sejak 2018.
           </p>
           <div className="flex flex-col gap-3">
             <span className="flex items-center gap-2 text-sm text-cream/90 font-bold">
-              <ShieldCheck size={18} className="text-wheat"/> Bersertifikat Organik
+              <ShieldCheck size={18} className="text-wheat" /> Bersertifikat Organik
             </span>
             <span className="flex items-center gap-2 text-sm text-cream/90 font-bold">
-              <ShieldCheck size={18} className="text-wheat"/> Terdaftar Kemenkumham & NIB
+              <ShieldCheck size={18} className="text-wheat" /> Terdaftar Kemenkumham & NIB
             </span>
           </div>
         </div>
         <div>
           <h3 className="font-serif text-xl mb-4 text-wheat">Kontak Kami</h3>
           <address className="not-italic text-cream/80 text-sm space-y-3">
-            <p>Jl. Setro Raya, Desa Gondoriyo,<br/>Kec. Bergas, Kab. Semarang</p>
+            <p>Jl. Setro Raya, Desa Gondoriyo,<br />Kec. Bergas, Kab. Semarang</p>
             <p>(024) 6933 5130</p>
             <p>+62 85 800 500 111</p>
             <p>customerrelation@cetrofarm.com</p>
