@@ -12,19 +12,19 @@ export const products = [
     id: "sayuran-segar",
     title: "Sayuran Segar",
     desc: "Dipanen langsung dari kebun dengan standar organik. Kualitas ekspor.",
-    image: "/assets/produk-sayuran-segar.png"
+    image: "/assets/produk-sayuran-segar.webp"
   },
   {
     id: "bahan-pokok",
     title: "Bahan Pokok",
     desc: "Beras Rindjing dan hasil bumi berkualitas tinggi untuk stabilitas dapur Anda.",
-    image: "/assets/produk-bahan-pokok.png"
+    image: "/assets/produk-bahan-pokok.webp"
   },
   {
     id: "protein-hewani",
     title: "Protein Hewani",
     desc: "Daging ayam dan telur dari peternakan terstandarisasi bebas residu antibiotik.",
-    image: "/assets/produk-protein-hewani.png"
+    image: "/assets/produk-protein-hewani.webp"
   }
 ];
 
@@ -72,19 +72,19 @@ export const articles = [
   {
     title: "Masa Depan Pertanian Organik di Jawa Tengah",
     slug: "masa-depan-pertanian-organik",
-    image: "/assets/artikel-1.png",
+    image: "/assets/artikel-1.webp",
     date: "12 Ags 2026"
   },
   {
     title: "Mengenal Beras Rindjing: Varian Unggulan",
     slug: "mengenal-beras-rindjing",
-    image: "/assets/artikel-2.png",
+    image: "/assets/artikel-2.webp",
     date: "05 Ags 2026"
   },
   {
     title: "Pentingnya Traceability dalam Rantai Pasok Pangan",
     slug: "traceability-rantai-pasok",
-    image: "/assets/artikel-3.png",
+    image: "/assets/artikel-3.webp",
     date: "28 Jul 2026"
   }
 ];

@@ -32,7 +32,7 @@ function Homepage() {
       <section className="relative w-full h-[90vh] min-h-[600px] flex items-center pt-10">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/assets/hero-panen-golden-hour.png" 
+            src="/assets/hero-panen-golden-hour.webp" 
             alt="Petani memanen saat golden hour" 
             fetchPriority="high"
             className="w-full h-full object-cover opacity-80"
@@ -149,7 +149,7 @@ function Homepage() {
               </div>
             </div>
             <div className="md:w-1/2">
-              <img src="/assets/ilustrasi-rantai-pasok.png" alt="Alur Ekosistem Rantai Pasok" loading="lazy" className="rounded-sm w-full shadow-2xl" />
+              <img src="/assets/ilustrasi-rantai-pasok.webp" alt="Alur Ekosistem Rantai Pasok" loading="lazy" className="rounded-sm w-full shadow-2xl" />
             </div>
           </div>
         </div>

@@ -31,7 +31,7 @@ function InvestorPage() {
       <section className="relative w-full pt-32 pb-24 flex items-center bg-forest text-cream overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/assets/hero-panen-golden-hour.png" 
+            src="/assets/hero-panen-golden-hour.webp" 
             alt="Petani Cetrofarm" 
             fetchPriority="high"
             className="w-full h-full object-cover opacity-30 grayscale mix-blend-multiply"

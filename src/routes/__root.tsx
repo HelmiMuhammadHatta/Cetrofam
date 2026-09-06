@@ -2,6 +2,7 @@ import { HeadContent, Scripts, Outlet, createRootRoute } from '@tanstack/react-r
 import * as React from 'react'
 import { ShieldCheck } from 'lucide-react'
 import { saveLead } from '../server/actions'
+import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 
 import '../styles.css'
 
@@ -98,6 +99,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           {children}
         </main>
         <Footer />
+        <FloatingWhatsApp />
         <Scripts />
       </body>
     </html>
@@ -109,7 +111,7 @@ function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-cream/20 bg-cream/90 backdrop-blur-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <a href="/" className="block bg-forest rounded-full px-5 py-2 hover:bg-forest/90 transition-colors shadow-sm">
-          <img src="/assets/logo.png" alt="Cetrofarm" className="h-8 md:h-10 w-auto object-contain" />
+          <img src="/assets/logo.webp" alt="Cetrofarm" className="h-8 md:h-10 w-auto object-contain" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="/tentang" className="hover:text-wheat transition-colors">Tentang</a>
@@ -188,7 +190,7 @@ function Footer() {
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
           <a href="/" className="block mb-6">
-            <img src="/assets/logo.png" alt="Cetrofarm" className="h-16 md:h-20 w-auto object-contain" />
+            <img src="/assets/logo.webp" alt="Cetrofarm" className="h-16 md:h-20 w-auto object-contain" />
           </a>
           <p className="text-cream/80 text-sm leading-relaxed mb-6">
             bringing nature inside.<br/>

@@ -11,7 +11,11 @@ const config = defineConfig({
   resolve: { tsconfigPaths: true },
   plugins: [
     devtools(),
-    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
+    nitro({ 
+      preset: 'static',
+      prerender: { crawlLinks: true, routes: ['/'] },
+      rollupConfig: { external: [/^@sentry\//] } 
+    }),
     tailwindcss(),
     tanstackStart(),
     viteReact(),
