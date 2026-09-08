@@ -1,6 +1,6 @@
 import { HeadContent, Scripts, Outlet, createRootRoute } from '@tanstack/react-router'
 import * as React from 'react'
-import { ShieldCheck } from 'lucide-react'
+import { ShieldCheck, Menu, X } from 'lucide-react'
 import { saveLead } from '../server/actions'
 import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 
@@ -108,12 +108,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 }
 
 function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-forest/20 bg-forest text-cream">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between relative">
         <a href="/" className="block hover:opacity-80 transition-opacity">
           <img src="/assets/CETRALOG.png" alt="Cetrofarm" className="h-12 md:h-16 w-auto object-contain" />
         </a>
+        
+        {/* Navigasi Desktop */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="/tentang" className="hover:text-wheat transition-colors">Tentang</a>
           <a href="/ekosistem" className="hover:text-wheat transition-colors">Ekosistem</a>
@@ -123,12 +127,39 @@ function Navbar() {
           <a href="/kontak" className="hover:text-wheat transition-colors">Kontak</a>
           <a href="/faq" className="hover:text-wheat transition-colors">FAQ</a>
         </nav>
+        
         <div className="flex items-center gap-4">
           <a href="/investor" className="hidden lg:inline-flex px-5 py-2.5 bg-cream text-forest rounded-sm hover:bg-wheat transition-all font-bold text-sm">
             Kemitraan B2B
           </a>
+          {/* Tombol Toggle Menu Mobile */}
+          <button 
+            className="md:hidden p-2 text-cream hover:text-wheat transition-colors focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
       </div>
+
+      {/* Dropdown Navigasi Mobile */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-20 left-0 w-full bg-forest border-t border-cream/10 shadow-lg z-40">
+          <nav className="flex flex-col px-4 py-6 gap-2 text-base font-medium">
+            <a href="/tentang" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>Tentang</a>
+            <a href="/ekosistem" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>Ekosistem</a>
+            <a href="/produk" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>Produk</a>
+            <a href="/investor" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>Investor</a>
+            <a href="/artikel" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>Artikel</a>
+            <a href="/kontak" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>Kontak</a>
+            <a href="/faq" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
+            <a href="/investor" className="inline-block mt-4 px-5 py-3.5 bg-cream text-forest rounded-sm hover:bg-wheat transition-all font-bold text-center" onClick={() => setIsMobileMenuOpen(false)}>
+              Kemitraan B2B
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
