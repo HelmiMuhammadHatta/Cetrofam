@@ -20,6 +20,8 @@ import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as ProdukRouteImport } from './routes/produk'
 import { Route as SyaratKetentuanRouteImport } from './routes/syarat-ketentuan'
 import { Route as TentangRouteImport } from './routes/tentang'
+import { Route as TestimoniRouteImport } from './routes/testimoni'
+import { Route as AdminLeadsRouteImport } from './routes/admin/leads'
 import { Route as ArtikelIndexRouteImport } from './routes/artikel/index'
 import { Route as ArtikelSlugRouteImport } from './routes/artikel/$slug'
 
@@ -78,6 +80,16 @@ const TentangRoute = TentangRouteImport.update({
   path: '/tentang',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestimoniRoute = TestimoniRouteImport.update({
+  id: '/testimoni',
+  path: '/testimoni',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArtikelIndexRoute = ArtikelIndexRouteImport.update({
   id: '/artikel/',
   path: '/artikel/',
@@ -101,6 +113,8 @@ export interface FileRoutesByFullPath {
   '/produk': typeof ProdukRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang': typeof TentangRoute
+  '/testimoni': typeof TestimoniRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/artikel/': typeof ArtikelIndexRoute
 }
@@ -116,6 +130,8 @@ export interface FileRoutesByTo {
   '/produk': typeof ProdukRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang': typeof TentangRoute
+  '/testimoni': typeof TestimoniRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/artikel': typeof ArtikelIndexRoute
 }
@@ -132,6 +148,8 @@ export interface FileRoutesById {
   '/produk': typeof ProdukRoute
   '/syarat-ketentuan': typeof SyaratKetentuanRoute
   '/tentang': typeof TentangRoute
+  '/testimoni': typeof TestimoniRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/artikel/$slug': typeof ArtikelSlugRoute
   '/artikel/': typeof ArtikelIndexRoute
 }
@@ -149,6 +167,8 @@ export interface FileRouteTypes {
     | '/produk'
     | '/syarat-ketentuan'
     | '/tentang'
+    | '/testimoni'
+    | '/admin/leads'
     | '/artikel/$slug'
     | '/artikel/'
   fileRoutesByTo: FileRoutesByTo
@@ -164,6 +184,8 @@ export interface FileRouteTypes {
     | '/produk'
     | '/syarat-ketentuan'
     | '/tentang'
+    | '/testimoni'
+    | '/admin/leads'
     | '/artikel/$slug'
     | '/artikel'
   id:
@@ -179,6 +201,8 @@ export interface FileRouteTypes {
     | '/produk'
     | '/syarat-ketentuan'
     | '/tentang'
+    | '/testimoni'
+    | '/admin/leads'
     | '/artikel/$slug'
     | '/artikel/'
   fileRoutesById: FileRoutesById
@@ -195,6 +219,8 @@ export interface RootRouteChildren {
   ProdukRoute: typeof ProdukRoute
   SyaratKetentuanRoute: typeof SyaratKetentuanRoute
   TentangRoute: typeof TentangRoute
+  TestimoniRoute: typeof TestimoniRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
   ArtikelSlugRoute: typeof ArtikelSlugRoute
   ArtikelIndexRoute: typeof ArtikelIndexRoute
 }
@@ -278,6 +304,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TentangRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/testimoni': {
+      id: '/testimoni'
+      path: '/testimoni'
+      fullPath: '/testimoni'
+      preLoaderRoute: typeof TestimoniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/artikel/': {
       id: '/artikel/'
       path: '/artikel'
@@ -307,6 +347,8 @@ const rootRouteChildren: RootRouteChildren = {
   ProdukRoute: ProdukRoute,
   SyaratKetentuanRoute: SyaratKetentuanRoute,
   TentangRoute: TentangRoute,
+  TestimoniRoute: TestimoniRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
   ArtikelSlugRoute: ArtikelSlugRoute,
   ArtikelIndexRoute: ArtikelIndexRoute,
 }

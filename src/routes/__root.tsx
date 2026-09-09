@@ -1,8 +1,8 @@
 import { HeadContent, Scripts, Outlet, createRootRoute } from '@tanstack/react-router'
 import * as React from 'react'
-import { ShieldCheck, Menu, X } from 'lucide-react'
-import { saveLead } from '../server/actions'
+import { ShieldCheck, Menu, X, Globe } from 'lucide-react'
 import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
+import { I18nProvider, useI18n } from '../context/i18n'
 
 import '../styles.css'
 
@@ -82,7 +82,9 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      <I18nProvider>
+        <Outlet />
+      </I18nProvider>
     </RootDocument>
   )
 }
@@ -109,6 +111,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const { language, setLanguage, t } = useI18n();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-forest/20 bg-forest text-cream">
@@ -119,19 +122,25 @@ function Navbar() {
         
         {/* Navigasi Desktop */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-          <a href="/tentang" className="hover:text-wheat transition-colors">Tentang</a>
-          <a href="/ekosistem" className="hover:text-wheat transition-colors">Ekosistem</a>
-          <a href="/produk" className="hover:text-wheat transition-colors">Produk</a>
-          <a href="/investor" className="hover:text-wheat transition-colors">Investor</a>
-          <a href="/artikel" className="hover:text-wheat transition-colors">Artikel</a>
-          <a href="/kontak" className="hover:text-wheat transition-colors">Kontak</a>
-          <a href="/faq" className="hover:text-wheat transition-colors">FAQ</a>
+          <a href="/tentang" className="hover:text-wheat transition-colors">{t('nav.tentang')}</a>
+          <a href="/ekosistem" className="hover:text-wheat transition-colors">{t('nav.ekosistem')}</a>
+          <a href="/produk" className="hover:text-wheat transition-colors">{t('nav.produk')}</a>
+          <a href="/investor" className="hover:text-wheat transition-colors">{t('nav.investor')}</a>
+          <a href="/artikel" className="hover:text-wheat transition-colors">{t('nav.artikel')}</a>
+          <a href="/kontak" className="hover:text-wheat transition-colors">{t('nav.kontak')}</a>
         </nav>
         
         <div className="flex items-center gap-4">
           <a href="/kontak" className="hidden lg:inline-flex px-5 py-2.5 bg-cream text-forest rounded-sm hover:bg-wheat transition-all font-bold text-sm">
             Hubungi Kami
           </a>
+          <button 
+            onClick={() => setLanguage(language === 'id' ? 'en' : 'id')}
+            className="flex items-center gap-1 px-2 py-1 rounded-sm border border-cream/30 hover:bg-cream/10 transition-colors"
+          >
+            <Globe size={16} />
+            <span className="text-sm font-bold uppercase">{language}</span>
+          </button>
           {/* Tombol Toggle Menu Mobile */}
           <button 
             className="md:hidden p-2 text-cream hover:text-wheat transition-colors focus:outline-none"

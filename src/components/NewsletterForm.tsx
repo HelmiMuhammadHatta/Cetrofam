@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { saveLead } from '../server/actions'
+import { submitNewsletter } from '../server/actions'
 import { CheckCircle } from 'lucide-react'
 
 const newsletterSchema = z.object({
@@ -22,10 +22,8 @@ export function NewsletterForm() {
   const onSubmit = async (data: NewsletterData) => {
     setSubmitStatus('loading')
     try {
-      const result = await saveLead({ data: {
-        name: 'Subscriber', // Default name for newsletter
+      const result = await submitNewsletter({ data: {
         email: data.email,
-        leadType: 'newsletter',
       }})
       
       if (result.success) {

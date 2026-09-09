@@ -1,19 +1,19 @@
 export const companyData = {
-  legalName: "PT. Cetro Tama Indonesia",
+  legalName: "PT. Cetro Tama Indonesia (Cetrofarm)",
   brandName: "Cetrofarm",
-  established: 2015,
+  established: 2018,
   nib: "9120212080575",
-  description: "Berbentuk holding untuk seluruh unit bisnis di bawah brand Cetrofarm.",
+  description: "Ekosistem Agrikultur Terintegrasi",
   contact: {
     mainOffice: {
-      address: "Dusun Setro, Desa Gondoriyo, Kec. Bergas, Kab. Semarang, 50187, Jawa Tengah",
-      phone: "+62024-6935130",
+      address: "Jl. Setro Raya, Desa Gondoriyo, Kec. Bergas, Kab. Semarang",
+      phone: "024 6933 5138",
     },
     repOffice: {
       name: "Deruzzi Space",
       address: "Jl. Sukajadi No. 25, Bandung"
     },
-    whatsapp: "+62 85 800 500 111",
+    whatsapp: "+62 85 8603 00 111",
     email: "customerrelation@cetrofarm.com"
   }
 };

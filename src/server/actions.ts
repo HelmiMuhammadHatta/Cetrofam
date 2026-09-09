@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start';
 import { db } from '../db';
-import { leads } from '../db/schema';
+import { contactSubmissions, investorLeads, newsletterSubscribers } from '../db/schema';
 import { z } from 'zod';
 
 // Simple in-memory rate limiter
@@ -32,44 +32,78 @@ function isRateLimited(email: string) {
   return false;
 }
 
-export const saveLead = createServerFn({ method: 'POST' })
-  .validator((data: {
-    name: string;
-    email: string;
-    phone?: string;
-    leadType: 'contact' | 'investor' | 'newsletter';
-    message?: string;
-  }) => {
+export const submitContact = createServerFn({ method: 'POST' })
+  .validator((data: { name: string; email: string; phone?: string; message: string }) => {
     return z.object({
       name: z.string().min(1, 'Nama wajib diisi'),
       email: z.string().email('Format email tidak valid'),
       phone: z.string().optional(),
-      leadType: z.enum(['contact', 'investor', 'newsletter']),
-      message: z.string().optional(),
+      message: z.string().min(5, 'Pesan terlalu singkat'),
     }).parse(data);
   })
   .handler(async (ctx) => {
     try {
       if (isRateLimited(ctx.data.email)) {
-        return { success: false, error: 'Terlalu banyak permintaan. Silakan coba lagi nanti (Rate Limited).' };
+        return { success: false, error: 'Terlalu banyak permintaan. Silakan coba lagi nanti.' };
       }
-
-      await db.insert(leads).values({
+      await db.insert(contactSubmissions).values({
         name: ctx.data.name,
         email: ctx.data.email,
         phone: ctx.data.phone || null,
-        leadType: ctx.data.leadType,
-        message: ctx.data.message || null,
+        message: ctx.data.message,
       });
-
-      // TODO: Kirim notifikasi email via Resend/Nodemailer ke tim internal
-      // if (ctx.data.leadType === 'contact') {
-      //   await sendEmailNotification(ctx.data);
-      // }
-
       return { success: true };
     } catch (error) {
-      console.error('Failed to save lead:', error);
-      return { success: false, error: 'Gagal menyimpan data ke sistem.' };
+      console.error('Failed to submit contact:', error);
+      return { success: false, error: 'Gagal mengirim pesan.' };
+    }
+  });
+
+export const submitInvestor = createServerFn({ method: 'POST' })
+  .validator((data: { name: string; email: string; company?: string; message: string }) => {
+    return z.object({
+      name: z.string().min(1, 'Nama wajib diisi'),
+      email: z.string().email('Format email tidak valid'),
+      company: z.string().optional(),
+      message: z.string().min(5, 'Pesan terlalu singkat'),
+    }).parse(data);
+  })
+  .handler(async (ctx) => {
+    try {
+      if (isRateLimited(ctx.data.email)) {
+        return { success: false, error: 'Terlalu banyak permintaan. Silakan coba lagi nanti.' };
+      }
+      await db.insert(investorLeads).values({
+        name: ctx.data.name,
+        email: ctx.data.email,
+        company: ctx.data.company || null,
+        message: ctx.data.message,
+      });
+      return { success: true };
+    } catch (error) {
+      console.error('Failed to submit investor inquiry:', error);
+      return { success: false, error: 'Gagal mengirim inquiry.' };
+    }
+  });
+
+export const submitNewsletter = createServerFn({ method: 'POST' })
+  .validator((data: { email: string }) => {
+    return z.object({
+      email: z.string().email('Format email tidak valid'),
+    }).parse(data);
+  })
+  .handler(async (ctx) => {
+    try {
+      if (isRateLimited(ctx.data.email)) {
+        return { success: false, error: 'Terlalu banyak permintaan.' };
+      }
+      // Upsert/Ignore conflict if email already exists
+      await db.insert(newsletterSubscribers)
+        .values({ email: ctx.data.email })
+        .onConflictDoNothing(); // Postgres specific
+      return { success: true };
+    } catch (error) {
+      console.error('Failed to subscribe:', error);
+      return { success: false, error: 'Gagal berlangganan newsletter.' };
     }
   });

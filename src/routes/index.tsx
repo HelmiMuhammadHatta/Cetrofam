@@ -5,6 +5,7 @@ import { metrics, products, valueProps, steps, testimonials, articles } from '..
 import { TractionChart } from '../components/TractionChart'
 import { NewsletterForm } from '../components/NewsletterForm'
 import { CountUp } from '../components/CountUp'
+import { trackEvent } from '../utils/analytics'
 
 declare global {
   interface Window {
@@ -19,6 +20,26 @@ export const Route = createFileRoute('/')({
       { title: 'Cetrofarm | Ekosistem Agrikultur Terintegrasi' },
       { name: 'description', content: 'Cetrofarm adalah perusahaan agrikultur yang terintegrasi dari hulu ke hilir. Menyediakan bahan pangan berkualitas untuk konsumen, offtaker B2B, dan investor.' },
       { property: 'og:title', content: 'Cetrofarm | Ekosistem Agrikultur Terintegrasi' },
+    ],
+    scripts: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Cetrofarm",
+          "image": "https://cetrofarm.vercel.app/assets/hero-panen-golden-hour.webp",
+          "telephone": "024 6933 5138",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jl. Setro Raya, Desa Gondoriyo, Kec. Bergas",
+            "addressLocality": "Semarang",
+            "addressRegion": "Jawa Tengah",
+            "postalCode": "50552",
+            "addressCountry": "ID"
+          }
+        })
+      }
     ]
   })
 })
@@ -58,13 +79,13 @@ function Homepage() {
               Membangun Ketahanan Pangan, <span className="text-wheat italic">Satu Panen Sekaligus.</span>
             </h1>
             <p className="text-lg md:text-xl text-cream/90 mb-10 max-w-2xl font-light leading-relaxed">
-              Cetrofarm merawat rantai pasok pangan dari petani binaan langsung ke meja Anda. Memberikan kepastian bagi offtaker dan kesejahteraan bagi petani sejak 2015.
+              Cetrofarm merawat rantai pasok pangan dari petani binaan langsung ke meja Anda. Memberikan kepastian bagi offtaker dan kesejahteraan bagi petani sejak 2018.
             </p>
             <div className="flex flex-wrap gap-4 mb-16 relative z-20">
-              <a href="/profil" className="px-6 py-3 bg-wheat text-forest font-bold rounded-sm hover:bg-white hover:shadow-lg transition-all flex items-center gap-2">
+              <a href="/profil" onClick={() => trackEvent('cta_click', { button: 'Lihat Profil' })} className="px-6 py-3 bg-wheat text-forest font-bold rounded-sm hover:bg-white hover:shadow-lg transition-all flex items-center gap-2">
                 Lihat Profil Perusahaan <ArrowRight size={18} />
               </a>
-              <a href="/investor" className="px-6 py-3 bg-transparent border-2 border-cream text-cream font-bold rounded-sm hover:bg-cream/10 transition-all">
+              <a href="/investor" onClick={() => trackEvent('cta_click', { button: 'Peluang Investasi' })} className="px-6 py-3 bg-transparent border-2 border-cream text-cream font-bold rounded-sm hover:bg-cream/10 transition-all">
                 Peluang Investasi
               </a>
             </div>
@@ -91,7 +112,7 @@ function Homepage() {
               </div>
               <div>
                 <p className="text-4xl font-serif font-bold text-wheat">
-                  <CountUp end={2015} duration={1.5} />
+                  <CountUp end={2018} duration={1.5} />
                 </p>
                 <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Tahun Berdiri</p>
               </div>
