@@ -35,7 +35,7 @@ export function FloatingWhatsApp() {
   }, []);
 
   const message = "Halo Cetrofarm, saya ingin bertanya...";
-  const waUrl = `https://wa.me/6285860300111?text=${encodeURIComponent(message)}`;
+  const waUrl = `https://wa.me/6285800500111?text=${encodeURIComponent(message)}`;
 
   if (isHidden) return null;
 

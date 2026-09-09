@@ -69,7 +69,15 @@ function KontakPage() {
                 <MapPin className="text-wheat shrink-0" size={24} />
                 <div>
                   <h3 className="font-bold text-forest">Kantor & Pusat Distribusi</h3>
-                  <p className="text-forest/70 mt-1">Jl. Setro Raya, Desa Gondoriyo,<br/> Kec. Bergas, Kab. Semarang,<br/> Jawa Tengah, 50552</p>
+                  <p className="text-forest/70 mt-1">Dusun Setro, Desa Gondoriyo,<br/> Kec. Bergas, Kab. Semarang,<br/> Jawa Tengah, 50187</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <MapPin className="text-wheat shrink-0" size={24} />
+                <div>
+                  <h3 className="font-bold text-forest">Kantor Perwakilan</h3>
+                  <p className="text-forest/70 mt-1">Deruzzi Space, Jl. Sukajadi No. 25, Bandung</p>
                 </div>
               </div>
 
@@ -77,7 +85,7 @@ function KontakPage() {
                 <Phone className="text-wheat shrink-0" size={24} />
                 <div>
                   <h3 className="font-bold text-forest">Telepon & WhatsApp</h3>
-                  <p className="text-forest/70 mt-1">Office: (024) 6933 5130</p>
+                  <p className="text-forest/70 mt-1">Office: +62024-6935130</p>
                   <p className="text-forest/70">WhatsApp: +62 85 800 500 111</p>
                 </div>
               </div>

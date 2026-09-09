@@ -58,7 +58,7 @@ export const Route = createRootRoute({
             "logo": `${siteUrl}/assets/favicon.png`,
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+62-85-8603-00-111",
+              "telephone": "+62-85-800-500-111",
               "email": "info@cetrofarm.com",
               "contactType": "customer service"
             },
@@ -129,8 +129,8 @@ function Navbar() {
         </nav>
         
         <div className="flex items-center gap-4">
-          <a href="/investor" className="hidden lg:inline-flex px-5 py-2.5 bg-cream text-forest rounded-sm hover:bg-wheat transition-all font-bold text-sm">
-            Kemitraan B2B
+          <a href="/kontak" className="hidden lg:inline-flex px-5 py-2.5 bg-cream text-forest rounded-sm hover:bg-wheat transition-all font-bold text-sm">
+            Hubungi Kami
           </a>
           {/* Tombol Toggle Menu Mobile */}
           <button 
@@ -154,8 +154,8 @@ function Navbar() {
             <a href="/artikel" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>Artikel</a>
             <a href="/kontak" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>Kontak</a>
             <a href="/faq" className="hover:text-wheat transition-colors block py-3 border-b border-cream/10" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
-            <a href="/investor" className="inline-block mt-4 px-5 py-3.5 bg-cream text-forest rounded-sm hover:bg-wheat transition-all font-bold text-center" onClick={() => setIsMobileMenuOpen(false)}>
-              Kemitraan B2B
+            <a href="/kontak" className="inline-block mt-4 px-5 py-3.5 bg-cream text-forest rounded-sm hover:bg-wheat transition-all font-bold text-center" onClick={() => setIsMobileMenuOpen(false)}>
+              Hubungi Kami
             </a>
           </nav>
         </div>

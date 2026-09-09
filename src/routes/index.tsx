@@ -95,7 +95,7 @@ function Homepage() {
             <span className="font-serif text-2xl font-bold text-forest mx-4">Distributor Regional</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Mitra Ekspor</span>
           </div>
-          <div className="animate-marquee whitespace-nowrap flex items-center gap-12 md:gap-24 opacity-60 grayscale transition-all group-hover:grayscale-0 absolute top-0" style={{ transform: 'translateX(100%)' }}>
+          <div className="animate-marquee whitespace-nowrap flex items-center gap-12 md:gap-24 opacity-60 grayscale transition-all group-hover:grayscale-0 absolute top-0" style={{ transform: 'translateX(100%)' }} aria-hidden="true">
             <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> Sertifikasi Organik</span>
             <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> BPOM RI Teruji</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Ritel Modern Partner</span>
@@ -179,7 +179,7 @@ function Homepage() {
                   <p className="text-forest/70 mb-8 flex-grow">{p.desc}</p>
                   <div className="flex flex-col gap-3 mt-auto">
                     <span className="text-wheat font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Pelajari Lebih Lanjut <ArrowRight size={16}/></span>
-                    <a href={`https://wa.me/6285860300111?text=${encodeURIComponent(`Halo Cetrofarm, saya tertarik meminta penawaran untuk produk ${p.title}.`)}`} target="_blank" rel="noreferrer" onClick={(e) => { e.stopPropagation(); window.dataLayer && window.dataLayer.push({ event: 'click_wa_product', product: p.title }) }} className="w-full text-center py-2 border border-forest/20 text-forest font-bold rounded-sm hover:bg-forest hover:text-cream transition-colors text-sm">
+                    <a href={`https://wa.me/6285800500111?text=${encodeURIComponent(`Halo Cetrofarm, saya tertarik meminta penawaran untuk produk ${p.title}.`)}`} target="_blank" rel="noreferrer" onClick={(e) => { e.stopPropagation(); window.dataLayer && window.dataLayer.push({ event: 'click_wa_product', product: p.title }) }} className="w-full text-center py-2 border border-forest/20 text-forest font-bold rounded-sm hover:bg-forest hover:text-cream transition-colors text-sm">
                       Minta Penawaran (B2B)
                     </a>
                   </div>
