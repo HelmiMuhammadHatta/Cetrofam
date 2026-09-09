@@ -75,24 +75,12 @@ function EkosistemPage() {
             </div>
             
             <div className="md:w-1/2 w-full">
-              <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20 relative h-64 flex items-center justify-center">
-                {/* Simplified stylized map dots representing nodes */}
-                <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-wheat rounded-full shadow-[0_0_15px_rgba(251,191,36,0.8)] animate-pulse"></div>
-                <div className="absolute top-1/3 left-1/2 w-3 h-3 bg-wheat/60 rounded-full"></div>
-                <div className="absolute top-1/2 left-2/3 w-3 h-3 bg-wheat/60 rounded-full"></div>
-                <div className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-wheat/40 rounded-full"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-3 h-3 bg-wheat/60 rounded-full"></div>
-                
-                {/* Connecting lines (SVG) */}
-                <svg className="absolute inset-0 w-full h-full" style={{ zIndex: -1 }}>
-                  <path d="M 25% 25% Q 35% 25% 50% 33%" fill="transparent" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-                  <path d="M 25% 25% Q 35% 45% 33% 66%" fill="transparent" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-                  <path d="M 50% 33% Q 60% 40% 66% 50%" fill="transparent" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-                </svg>
-                
-                <p className="text-center font-bold text-lg opacity-50 uppercase tracking-widest relative z-10">
-                  Interactive Node Map
-                </p>
+              <div className="rounded-sm overflow-hidden shadow-2xl relative border border-white/10">
+                <img 
+                  src="/assets/peta_jangkauan_cetrofarm.png" 
+                  alt="Peta Jangkauan Ekosistem Cetrofarm di Pulau Jawa" 
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
           </div>
