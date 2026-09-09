@@ -58,8 +58,8 @@ export const Route = createRootRoute({
             "logo": `${siteUrl}/assets/favicon.png`,
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+62-85-800-500-111",
-              "email": "info@cetrofarm.com",
+              "telephone": "+62-85-8603-00-111",
+              "email": "customerrelation@cetrofarm.com",
               "contactType": "customer service"
             },
             "address": {
@@ -236,7 +236,7 @@ function Footer() {
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
           <a href="/" className="block mb-6">
-            <img src="/assets/CETRALOG.png" alt="Cetrofarm" className="h-16 md:h-20 w-auto object-contain" />
+            <img src="/assets/CETRALOG.png" alt="Cetrofarm" width="160" height="80" className="h-16 md:h-20 w-auto object-contain" />
           </a>
           <p className="text-cream/80 text-sm leading-relaxed mb-6">
             bringing nature inside.<br />
@@ -255,8 +255,8 @@ function Footer() {
           <h3 className="font-serif text-xl mb-4 text-wheat">Kontak Kami</h3>
           <address className="not-italic text-cream/80 text-sm space-y-3">
             <p>Jl. Setro Raya, Desa Gondoriyo,<br />Kec. Bergas, Kab. Semarang</p>
-            <p>(024) 6933 5130</p>
-            <p>+62 85 800 500 111</p>
+            <p>(024) 6933 5138</p>
+            <p>+62 85 8603 00 111</p>
             <p>customerrelation@cetrofarm.com</p>
           </address>
         </div>

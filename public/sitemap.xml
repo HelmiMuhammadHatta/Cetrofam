@@ -1,81 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cetrofarm.com</loc>
-    <lastmod>2026-09-06</lastmod>
+    <loc>https://cetrofarm.vercel.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://cetrofarm.com/tentang</loc>
-    <lastmod>2026-09-06</lastmod>
+    <loc>https://cetrofarm.vercel.app/tentang</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cetrofarm.com/ekosistem</loc>
-    <lastmod>2026-09-06</lastmod>
+    <loc>https://cetrofarm.vercel.app/ekosistem</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cetrofarm.com/produk</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://cetrofarm.vercel.app/produk</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cetrofarm.com/investor</loc>
-    <lastmod>2026-09-06</lastmod>
+    <loc>https://cetrofarm.vercel.app/investor</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cetrofarm.com/artikel</loc>
-    <lastmod>2026-09-06</lastmod>
+    <loc>https://cetrofarm.vercel.app/keberlanjutan</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cetrofarm.com/kontak</loc>
-    <lastmod>2026-09-06</lastmod>
+    <loc>https://cetrofarm.vercel.app/kontak</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cetrofarm.com/faq</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cetrofarm.com/syarat-ketentuan</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cetrofarm.com/kebijakan-privasi</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cetrofarm.com/artikel/agrikultur-terintegrasi-era-modern</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cetrofarm.com/artikel/ekosistem-beras-berkualitas-pemberdayaan-petani</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cetrofarm.com/artikel/traceability-rantai-pasok-standar-b2b</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>

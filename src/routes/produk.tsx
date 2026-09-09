@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 import { Search, PackageCheck, Truck, ShieldCheck } from 'lucide-react'
-import { products, certifications } from '../data/company'
+import { businessLines, certifications } from '../data/company'
 
 export const Route = createFileRoute('/produk')({
   component: ProdukPage,
@@ -33,9 +33,10 @@ function ProdukPage() {
       {/* Product Categories Section */}
       <section className="container mx-auto px-4 max-w-5xl mb-24">
         <div className="grid md:grid-cols-2 gap-8">
-          {products.map((product, idx) => (
+          {businessLines.map((line, idx) => (
             <motion.div 
-              key={product.category} 
+              key={line.id} 
+              id={line.id}
               initial="hidden" 
               whileInView="visible" 
               viewport={{ once: true }} 
@@ -43,10 +44,14 @@ function ProdukPage() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: idx * 0.2 } }
               }}
-              className="bg-white p-8 rounded-sm shadow-md border border-forest/10"
+              className="bg-white p-8 rounded-sm shadow-md border border-forest/10 flex flex-col"
             >
-              <h2 className="text-2xl font-serif font-bold text-forest mb-4">{product.category}</h2>
-              <p className="text-forest/80 text-lg leading-relaxed">{product.description}</p>
+              <div className="flex gap-2 mb-4 text-xs uppercase tracking-wider font-bold">
+                <span className="bg-forest/10 text-forest px-2 py-1 rounded-sm">{line.status}</span>
+                <span className="bg-wheat/20 text-forest px-2 py-1 rounded-sm">{line.capacity}</span>
+              </div>
+              <h2 className="text-2xl font-serif font-bold text-forest mb-4">{line.title}</h2>
+              <p className="text-forest/80 text-lg leading-relaxed flex-grow">{line.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -107,15 +112,22 @@ function ProdukPage() {
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {certifications.map((cert) => (
-            <div key={cert.name} className="bg-white p-6 rounded-sm shadow-md flex flex-col items-center text-center">
-              <img 
-                src={cert.image} 
-                alt={cert.name} 
-                className="h-32 object-contain mb-4 grayscale hover:grayscale-0 transition-all duration-300"
-              />
+            <div key={cert.name} className="bg-white p-6 rounded-sm shadow-md flex flex-col items-center text-center border-t-4 border-wheat">
+              <div className="w-16 h-16 bg-forest-deep rounded-full flex items-center justify-center text-wheat mb-4 shadow-inner">
+                <ShieldCheck size={32} />
+              </div>
               <h3 className="text-xl font-bold text-forest mb-2">{cert.name}</h3>
-              <p className="text-forest/70 font-semibold mb-1">{cert.issuer}</p>
-              <p className="text-wheat font-bold text-sm uppercase tracking-wider">{cert.grade}</p>
+              <p className="text-forest/70 font-semibold mb-2">{cert.issuer}</p>
+              
+              <div className="w-full bg-cream p-3 rounded-sm mb-4">
+                <p className="text-xs text-forest/60 uppercase tracking-widest font-bold mb-1">Nomor Registrasi</p>
+                <p className="text-forest font-mono">{cert.certNumber}</p>
+              </div>
+              
+              <div className="flex justify-between w-full text-sm">
+                <p className="text-wheat font-bold uppercase">{cert.grade}</p>
+                <p className="text-forest/70">Masa Berlaku: <span className="font-bold">{cert.validUntil}</span></p>
+              </div>
             </div>
           ))}
         </div>

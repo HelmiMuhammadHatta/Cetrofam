@@ -1,6 +1,31 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { useState } from 'react'
 import { companyData, teamMembers } from '../data/company'
 import { CheckCircle, Target, Leaf, HeartHandshake, Zap, Clock } from 'lucide-react'
+
+function TeamMemberAvatar({ src, alt }: { src: string, alt: string }) {
+  const [error, setError] = useState(false)
+  const nameParts = alt.split(' — ')[0].split(' ')
+  const initials = nameParts.length > 1 ? nameParts[0][0] + nameParts[nameParts.length - 1][0] : nameParts[0][0]
+
+  if (error) {
+    return (
+      <div className="w-48 h-48 md:w-64 md:h-64 rounded-full shadow-xl border-4 border-wheat/30 bg-forest flex items-center justify-center text-wheat font-serif text-5xl md:text-7xl font-bold uppercase" title={alt}>
+        {initials}
+      </div>
+    )
+  }
+
+  return (
+    <img 
+      src={src} 
+      alt={alt} 
+      loading="lazy"
+      onError={() => setError(true)}
+      className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-xl border-4 border-wheat/30"
+    />
+  )
+}
 
 export const Route = createFileRoute('/tentang')({
   component: TentangPage,
@@ -136,12 +161,7 @@ function TentangPage() {
           {teamMembers.map((member, idx) => (
             <div key={member.name} className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-16`}>
               <div className="w-48 md:w-64 flex-shrink-0">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  loading="lazy"
-                  className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-xl border-4 border-wheat/30"
-                />
+                <TeamMemberAvatar src={member.image} alt={`${member.name} — ${member.role}`} />
               </div>
               <div className={`flex-1 text-center ${idx % 2 === 1 ? 'md:text-right' : 'md:text-left'}`}>
                 <h3 className="text-2xl font-serif font-bold text-forest mb-1">{member.name}</h3>

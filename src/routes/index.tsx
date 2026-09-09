@@ -1,7 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowRight, Leaf, ShieldCheck, Users, MoveRight, Download } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { metrics, products, valueProps, steps, testimonials, articles } from '../data/content'
+import { metrics, valueProps, steps, testimonials, articles } from '../data/content'
+import { businessLines } from '../data/company'
 import { TractionChart } from '../components/TractionChart'
 import { NewsletterForm } from '../components/NewsletterForm'
 import { CountUp } from '../components/CountUp'
@@ -96,25 +97,29 @@ function Homepage() {
                 <p className="text-4xl font-serif font-bold text-wheat">
                   <CountUp end={210} suffix="+" />
                 </p>
-                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Mitra Peternak</p>
+                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1 mb-1">Mitra Binaan</p>
+                <p className="text-xs text-cream/50 italic">Data internal, Q2 2026</p>
               </div>
               <div>
                 <p className="text-4xl font-serif font-bold text-wheat">
                   <CountUp end={340} suffix=" ha" />
                 </p>
-                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Lahan Kelola</p>
+                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1 mb-1">Lahan Kelola</p>
+                <p className="text-xs text-cream/50 italic">Data internal, Q2 2026</p>
               </div>
               <div>
                 <p className="text-4xl font-serif font-bold text-wheat">
                   <CountUp end={5} suffix=" lini" />
                 </p>
-                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Lini Bisnis</p>
+                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1 mb-1">Lini Bisnis</p>
+                <p className="text-xs text-cream/50 italic">Aktif beroperasi</p>
               </div>
               <div>
                 <p className="text-4xl font-serif font-bold text-wheat">
                   <CountUp end={2018} duration={1.5} />
                 </p>
-                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1">Tahun Berdiri</p>
+                <p className="text-sm text-cream/90 font-medium uppercase tracking-wider mt-1 mb-1">Tahun Berdiri</p>
+                <p className="text-xs text-cream/50 italic">NIB 9120212080575</p>
               </div>
             </div>
           </motion.div>
@@ -218,17 +223,21 @@ function Homepage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {products.map(p => (
+            {businessLines.map(p => (
               <div key={p.id} className="group block bg-white rounded-sm overflow-hidden border border-forest/10 hover:shadow-xl transition-all h-full flex flex-col cursor-pointer" onClick={() => window.location.href = `/produk#${p.id}`}>
                 <div className="h-64 overflow-hidden">
                   <img src={p.image} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-8 flex flex-col h-[calc(100%-16rem)]">
                   <h3 className="text-2xl font-serif font-bold text-forest mb-3">{p.title}</h3>
+                  <div className="flex gap-2 mb-3 text-xs uppercase tracking-wider font-bold">
+                    <span className="bg-forest/10 text-forest px-2 py-1 rounded-sm">{p.status}</span>
+                    <span className="bg-wheat/20 text-forest px-2 py-1 rounded-sm">{p.capacity}</span>
+                  </div>
                   <p className="text-forest/70 mb-8 flex-grow">{p.desc}</p>
                   <div className="flex flex-col gap-3 mt-auto">
                     <span className="text-wheat font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Pelajari Lebih Lanjut <ArrowRight size={16} /></span>
-                    <a href={`https://wa.me/6285800500111?text=${encodeURIComponent(`Halo Cetrofarm, saya tertarik meminta penawaran untuk produk ${p.title}.`)}`} target="_blank" rel="noreferrer" onClick={(e) => { e.stopPropagation(); window.dataLayer && window.dataLayer.push({ event: 'click_wa_product', product: p.title }) }} className="w-full text-center py-2 border border-forest/20 text-forest font-bold rounded-sm hover:bg-forest hover:text-cream transition-colors text-sm">
+                    <a href={`https://wa.me/6285860300111?text=${encodeURIComponent(`Halo Cetrofarm, saya tertarik meminta penawaran untuk produk ${p.title}.`)}`} target="_blank" rel="noreferrer" onClick={(e) => { e.stopPropagation(); window.dataLayer && window.dataLayer.push({ event: 'click_wa_product', product: p.title }) }} className="w-full text-center py-2 border border-forest/20 text-forest font-bold rounded-sm hover:bg-forest hover:text-cream transition-colors text-sm">
                       Minta Penawaran (B2B)
                     </a>
                   </div>

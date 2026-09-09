@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 import { MapPin, TrendingUp, Users, Target } from 'lucide-react'
 import { businessLines, cultivationProcess } from '../data/company'
+import { JavaMap } from '../components/JavaMap'
 
 export const Route = createFileRoute('/ekosistem')({
   component: EkosistemPage,
@@ -75,12 +76,8 @@ function EkosistemPage() {
             </div>
             
             <div className="md:w-1/2 w-full">
-              <div className="rounded-sm overflow-hidden shadow-2xl relative border border-white/10">
-                <img 
-                  src="/assets/peta_jangkauan_cetrofarm.png" 
-                  alt="Peta Jangkauan Ekosistem Cetrofarm di Pulau Jawa" 
-                  className="w-full h-auto object-cover"
-                />
+              <div className="rounded-sm overflow-hidden shadow-2xl relative border border-white/10 bg-forest-deep flex items-center justify-center p-4">
+                <JavaMap />
               </div>
             </div>
           </div>
@@ -136,6 +133,9 @@ function EkosistemPage() {
                 <img 
                   src={step.image} 
                   alt={step.title}
+                  width="400"
+                  height="300"
+                  loading="lazy"
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4 bg-wheat text-forest w-10 h-10 flex items-center justify-center font-bold text-xl rounded-full shadow-md z-10">

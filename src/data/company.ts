@@ -48,11 +48,11 @@ export const teamMembers = [
 ];
 
 export const businessLines = [
-  { id: "line-1", title: "Line 1", desc: "Produk sayuran untuk wilayah Jawa Tengah" },
-  { id: "line-2", title: "Line 2", desc: "Produk sayuran untuk wilayah nasional" },
-  { id: "line-3", title: "Line 3", desc: "Produk ubi madu (honey sweet potato)" },
-  { id: "line-4", title: "Line 4", desc: "Produk daging ayam" },
-  { id: "line-5", title: "Line 5", desc: "Produk bulk" }
+  { id: "sayuran-segar", title: "Sayuran Segar", desc: "Produksi dan suplai sayuran daun organik dan non-organik untuk B2B.", status: "Berjalan", capacity: "120 Ton / Bulan", image: "/assets/produk-sayuran-segar.webp" },
+  { id: "sayuran-nasional", title: "Sayuran Root & Buah", desc: "Suplai sayuran akar dan buah tahan lama untuk distribusi lintas provinsi.", status: "Berjalan", capacity: "85 Ton / Bulan", image: "/assets/produk-bahan-pokok.webp" },
+  { id: "ubi-madu", title: "Ubi Madu (Honey Sweet Potato)", desc: "Budidaya ubi madu kualitas premium untuk ritel dan rencana ekspor.", status: "Berjalan", capacity: "40 Ton / Bulan", image: "/assets/produk-sayuran-segar.webp" },
+  { id: "daging-ayam", title: "Protein Hewani (Ayam Kampung)", desc: "Karkas dan parting ayam kampung sehat bebas antibiotik residu.", status: "Berjalan", capacity: "1.200 Ekor / Siklus", image: "/assets/produk-protein-hewani.webp" },
+  { id: "bulk-ingredients", title: "Bahan Pokok Grosir (Bulk)", desc: "Penyediaan beras organik dan komoditas curah untuk industri horeka.", status: "Uji Coba", capacity: "20 Ton / Bulan", image: "/assets/produk-bahan-pokok.webp" }
 ];
 
 export const cultivationProcess = [
@@ -62,35 +62,29 @@ export const cultivationProcess = [
   { step: 4, title: "Harvesting", image: "/company/proses-4.webp", desc: "Panen pada tingkat kematangan optimal" }
 ];
 
-export const products = [
-  {
-    category: "Sayuran",
-    description: "Lebih dari 60 jenis sayuran, tersedia organik maupun non-organik.",
-  },
-  {
-    category: "Daging Ayam Kampung",
-    description: "Tersedia dalam bentuk karkas dan parting (potong 4, potong 8, potong 12).",
-  }
-];
+
 
 export const certifications = [
   {
     name: "Halal Assurance System",
     issuer: "LPPOM-MUI Jawa Tengah",
     grade: "Bagus Sekali/Excellent",
-    image: "/company/sertifikat-halal.webp"
+    validUntil: "2027",
+    certNumber: "ID33110000xxxxx23"
   },
   {
     name: "Nomor Kontrol Veteriner (NKV)",
     issuer: "Provinsi Jawa Tengah",
     grade: "Tingkat II",
-    image: "/company/sertifikat-nkv.webp"
+    validUntil: "2026",
+    certNumber: "33.00.xx.xx.xx.xx"
   },
   {
     name: "Sertifikat Pertanian Organik",
     issuer: "SNI 6729:2016",
     grade: "Ruang lingkup Hortikultura",
-    image: "/company/sertifikat-organik.webp"
+    validUntil: "2028",
+    certNumber: "ORG-12345-2023"
   }
 ];
 

@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://cetrofarm.com/sitemap.xml
+Sitemap: https://cetrofarm.vercel.app/sitemap.xml

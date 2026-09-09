@@ -7,26 +7,7 @@ export const metrics = {
   distributionReach: "Jawa & Bali"
 };
 
-export const products = [
-  {
-    id: "sayuran-segar",
-    title: "Sayuran Segar",
-    desc: "Dipanen langsung dari kebun dengan standar organik. Kualitas ekspor.",
-    image: "/assets/produk-sayuran-segar.webp"
-  },
-  {
-    id: "bahan-pokok",
-    title: "Bahan Pokok",
-    desc: "Beras Rindjing dan hasil bumi berkualitas tinggi untuk stabilitas dapur Anda.",
-    image: "/assets/produk-bahan-pokok.webp"
-  },
-  {
-    id: "protein-hewani",
-    title: "Protein Hewani",
-    desc: "Daging ayam dan telur dari peternakan terstandarisasi bebas residu antibiotik.",
-    image: "/assets/produk-protein-hewani.webp"
-  }
-];
+
 
 export const valueProps = [
   {
