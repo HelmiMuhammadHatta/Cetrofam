@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Download, TrendingUp, Handshake, CheckCircle, PieChart, ShieldAlert, BarChart } from 'lucide-react'
+import { Download, TrendingUp, Handshake, CheckCircle, PieChart, ShieldAlert, BarChart, Users } from 'lucide-react'
 import { useState } from 'react'
 import { teamMembers } from '../data/company'
 
