@@ -55,18 +55,18 @@ function Homepage() {
       {/* 2. Hero Section */}
       <section className="relative w-full h-[90vh] min-h-[600px] flex items-center pt-10">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/assets/hero-panen-golden-hour.webp" 
-            alt="Petani memanen saat golden hour" 
+          <img
+            src="/assets/hero-panen-golden-hour.webp"
+            alt="Petani memanen saat golden hour"
             fetchPriority="high"
             className="w-full h-full object-cover opacity-80"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-forest/90 to-forest/20 mix-blend-multiply z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-forest/50 via-transparent to-cream z-10"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10 text-cream">
-          <motion.div 
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={{
@@ -82,14 +82,14 @@ function Homepage() {
               Cetrofarm merawat rantai pasok pangan dari petani binaan langsung ke meja Anda. Memberikan kepastian bagi offtaker dan kesejahteraan bagi petani sejak 2018.
             </p>
             <div className="flex flex-wrap gap-4 mb-16 relative z-20">
-              <a href="/profil" onClick={() => trackEvent('cta_click', { button: 'Lihat Profil' })} className="px-6 py-3 bg-wheat text-forest font-bold rounded-sm hover:bg-white hover:shadow-lg transition-all flex items-center gap-2">
+              <a href="/tentang" onClick={() => trackEvent('cta_click', { button: 'Lihat Profil' })} className="px-6 py-3 bg-wheat text-forest font-bold rounded-sm hover:bg-white hover:shadow-lg transition-all flex items-center gap-2">
                 Lihat Profil Perusahaan <ArrowRight size={18} />
               </a>
               <a href="/investor" onClick={() => trackEvent('cta_click', { button: 'Peluang Investasi' })} className="px-6 py-3 bg-transparent border-2 border-cream text-cream font-bold rounded-sm hover:bg-cream/10 transition-all">
                 Peluang Investasi
               </a>
             </div>
-            
+
             {/* Panel Metrik */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-cream/20 relative z-20">
               <div>
@@ -128,16 +128,16 @@ function Homepage() {
         </div>
         <div className="relative flex overflow-x-hidden group">
           <div className="animate-marquee whitespace-nowrap flex items-center gap-12 md:gap-24 opacity-60 grayscale transition-all group-hover:grayscale-0">
-            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> Sertifikasi Organik</span>
-            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> Sertifikasi Halal MUI</span>
+            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28} /> Sertifikasi Organik</span>
+            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28} /> Sertifikasi Halal MUI</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Ritel Modern Partner</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Hotel & Restoran</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Distributor Regional</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Mitra Ekspor</span>
           </div>
           <div className="animate-marquee whitespace-nowrap flex items-center gap-12 md:gap-24 opacity-60 grayscale transition-all group-hover:grayscale-0 absolute top-0" style={{ transform: 'translateX(100%)' }} aria-hidden="true">
-            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> Sertifikasi Organik</span>
-            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28}/> Sertifikasi Halal MUI</span>
+            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28} /> Sertifikasi Organik</span>
+            <span className="font-serif text-2xl font-bold flex items-center gap-2 text-forest mx-4"><ShieldCheck size={28} /> Sertifikasi Halal MUI</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Ritel Modern Partner</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Hotel & Restoran</span>
             <span className="font-serif text-2xl font-bold text-forest mx-4">Distributor Regional</span>
@@ -147,7 +147,7 @@ function Homepage() {
       </section>
 
       {/* 4. Value proposition */}
-      <motion.section 
+      <motion.section
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
         className="py-24 bg-cream"
       >
@@ -160,7 +160,7 @@ function Homepage() {
             {valueProps.map((prop, idx) => (
               <div key={idx} className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 bg-forest/5 rounded-full flex items-center justify-center text-forest mb-6">
-                  {idx === 0 ? <MoveRight size={28}/> : idx === 1 ? <ShieldCheck size={28}/> : <Users size={28}/>}
+                  {idx === 0 ? <MoveRight size={28} /> : idx === 1 ? <ShieldCheck size={28} /> : <Users size={28} />}
                 </div>
                 <h3 className="text-2xl font-serif font-bold text-forest mb-3">{prop.title}</h3>
                 <p className="text-forest/70 leading-relaxed">{prop.desc}</p>
@@ -171,7 +171,7 @@ function Homepage() {
       </motion.section>
 
       {/* 5. Ekosistem rantai pasok */}
-      <motion.section 
+      <motion.section
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
         className="py-24 bg-forest text-cream"
       >
@@ -202,7 +202,7 @@ function Homepage() {
       </motion.section>
 
       {/* 6. Tiga lini produk */}
-      <motion.section 
+      <motion.section
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
         className="py-24 bg-cream"
       >
@@ -216,7 +216,7 @@ function Homepage() {
               Lihat Semua Katalog <ArrowRight size={18} />
             </a>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {products.map(p => (
               <div key={p.id} className="group block bg-white rounded-sm overflow-hidden border border-forest/10 hover:shadow-xl transition-all h-full flex flex-col cursor-pointer" onClick={() => window.location.href = `/produk#${p.id}`}>
@@ -227,7 +227,7 @@ function Homepage() {
                   <h3 className="text-2xl font-serif font-bold text-forest mb-3">{p.title}</h3>
                   <p className="text-forest/70 mb-8 flex-grow">{p.desc}</p>
                   <div className="flex flex-col gap-3 mt-auto">
-                    <span className="text-wheat font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Pelajari Lebih Lanjut <ArrowRight size={16}/></span>
+                    <span className="text-wheat font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Pelajari Lebih Lanjut <ArrowRight size={16} /></span>
                     <a href={`https://wa.me/6285800500111?text=${encodeURIComponent(`Halo Cetrofarm, saya tertarik meminta penawaran untuk produk ${p.title}.`)}`} target="_blank" rel="noreferrer" onClick={(e) => { e.stopPropagation(); window.dataLayer && window.dataLayer.push({ event: 'click_wa_product', product: p.title }) }} className="w-full text-center py-2 border border-forest/20 text-forest font-bold rounded-sm hover:bg-forest hover:text-cream transition-colors text-sm">
                       Minta Penawaran (B2B)
                     </a>
@@ -245,7 +245,7 @@ function Homepage() {
       </motion.section>
 
       {/* 7 & 8. Jaminan Mutu & Traction */}
-      <motion.section 
+      <motion.section
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
         className="py-20 bg-forest/5 border-y border-forest/10"
       >
@@ -255,14 +255,14 @@ function Homepage() {
               <h2 className="text-3xl font-serif font-bold text-forest mb-8">Standar & Traksi Kami</h2>
               <div className="space-y-6">
                 <div className="flex gap-4 items-start">
-                  <Leaf className="text-wheat shrink-0 mt-1" size={24}/>
+                  <Leaf className="text-wheat shrink-0 mt-1" size={24} />
                   <div>
                     <h4 className="font-bold text-forest text-lg">100% Organik & Bebas Kimia</h4>
                     <p className="text-forest/70 mt-1">Praktik pertanian ramah lingkungan bersertifikasi organik untuk sebagian besar lahan.</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
-                  <ShieldCheck className="text-wheat shrink-0 mt-1" size={24}/>
+                  <ShieldCheck className="text-wheat shrink-0 mt-1" size={24} />
                   <div>
                     <h4 className="font-bold text-forest text-lg">Quality Control Ketat</h4>
                     <p className="text-forest/70 mt-1">Setiap hasil panen melewati proses penyortiran di warehouse terpusat.</p>
@@ -298,7 +298,7 @@ function Homepage() {
       </motion.section>
 
       {/* 9. Testimoni */}
-      <motion.section 
+      <motion.section
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
         className="py-24 bg-cream"
       >
@@ -324,7 +324,7 @@ function Homepage() {
       </motion.section>
 
       {/* 10. Section Investor */}
-      <motion.section 
+      <motion.section
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
         className="py-24 bg-forest text-cream"
       >
@@ -338,12 +338,12 @@ function Homepage() {
               <a href="/investor" className="px-6 py-3 bg-wheat text-forest font-medium rounded-sm hover:bg-white transition-colors">
                 Baca Profil untuk Investor
               </a>
-              <a 
+              <a
                 href="/documents/cetrofarm-company-profile-2026.pdf"
                 download
                 className="px-6 py-3 border border-cream/30 text-cream font-medium rounded-sm hover:bg-cream/10 transition-colors flex items-center gap-2"
               >
-                <Download size={18}/> Unduh Company Profile (PDF)
+                <Download size={18} /> Unduh Company Profile (PDF)
               </a>
             </div>
           </div>
@@ -354,7 +354,7 @@ function Homepage() {
       </motion.section>
 
       {/* 11. Artikel Terbaru */}
-      <motion.section 
+      <motion.section
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
         className="py-24 bg-cream"
       >
@@ -369,7 +369,7 @@ function Homepage() {
             {articles.map((art, idx) => (
               <a href={`/artikel/${art.slug}`} key={idx} className="group block">
                 <div className="overflow-hidden rounded-sm mb-4 h-56 border border-forest/10">
-                  <img src={art.image} alt={art.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+                  <img src={art.image} alt={art.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <p className="text-sm text-wheat font-medium mb-2">{art.date}</p>
                 <h3 className="text-xl font-bold text-forest mb-2 group-hover:text-forest/80 transition-colors">{art.title}</h3>
@@ -380,7 +380,7 @@ function Homepage() {
       </motion.section>
 
       {/* 12. Lead Magnet Band */}
-      <motion.section 
+      <motion.section
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
         className="relative py-16 text-cream border-y border-forest/10" style={{ backgroundImage: 'url(/assets/bg-newsletter.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
