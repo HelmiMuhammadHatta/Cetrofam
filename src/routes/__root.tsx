@@ -81,11 +81,11 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <RootDocument>
-      <I18nProvider>
+    <I18nProvider>
+      <RootDocument>
         <Outlet />
-      </I18nProvider>
-    </RootDocument>
+      </RootDocument>
+    </I18nProvider>
   )
 }
 
