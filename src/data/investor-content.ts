@@ -38,8 +38,8 @@ export const roadmap = [
 ];
 
 export const legalities = [
-  "PT Cetrofarm Pangan Nusantara",
-  "NIB: 129302193201",
+  "PT. Cetro Tama Indonesia (Cetrofarm)",
+  "NIB: 9120212080575",
   "Sertifikasi Organik INOFICE",
   "Izin Edar BPOM (Beberapa lini produk)"
 ];

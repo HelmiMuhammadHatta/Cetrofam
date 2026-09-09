@@ -30,7 +30,7 @@ function TentangPage() {
       <section className="container mx-auto px-4 max-w-5xl mb-16">
         <div className="rounded-sm overflow-hidden shadow-2xl relative">
           <img 
-            src="https://cetrofarm.com/home/wp-content/uploads/2023/11/profil-1024x682.jpeg" 
+            src="/assets/hero-panen-golden-hour.webp" 
             alt="Tim Cetrofarm di Lapangan" 
             fetchPriority="high"
             className="w-full h-[300px] md:h-[500px] object-cover"

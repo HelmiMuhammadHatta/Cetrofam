@@ -53,7 +53,7 @@ export const Route = createRootRoute({
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "PT Cetrofarm Pangan Nusantara",
+            "name": "PT. Cetro Tama Indonesia (Cetrofarm)",
             "url": siteUrl,
             "logo": `${siteUrl}/assets/favicon.png`,
             "contactPoint": {
@@ -268,7 +268,7 @@ function Footer() {
         </div>
       </div>
       <div className="container mx-auto px-4 mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-4 text-cream/50 text-sm">
-        <p>&copy; {new Date().getFullYear()} PT Cetrofarm Pangan Nusantara. Hak Cipta Dilindungi.</p>
+        <p>&copy; {new Date().getFullYear()} PT. Cetro Tama Indonesia (Cetrofarm). Hak Cipta Dilindungi.</p>
         <div className="flex gap-4">
           <a href="/syarat-ketentuan" className="hover:text-cream transition-colors">Syarat & Ketentuan</a>
           <a href="/kebijakan-privasi" className="hover:text-cream transition-colors">Kebijakan Privasi</a>

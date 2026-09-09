@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
 import { ChevronDown, ArrowUpRight } from 'lucide-react'
+import { companyData } from '../data/company'
 
 export const Route = createFileRoute('/faq')({
   component: FAQPage,
@@ -53,7 +54,7 @@ function FAQPage() {
           />
           <FAQItem 
             question="Bagaimana cara menjadi agen atau mitra B2B?" 
-            answer="Anda dapat mengunjungi halaman Investor & Kemitraan untuk mengajukan diri sebagai Offtaker B2B, atau hubungi tim sales kami melalui WhatsApp di +62 85 8603 00 111 untuk menjadi agen distribusi ritel." 
+            answer={`Anda dapat mengunjungi halaman Investor & Kemitraan untuk mengajukan diri sebagai Offtaker B2B, atau hubungi tim sales kami melalui WhatsApp di ${companyData.contact.whatsapp} untuk menjadi agen distribusi ritel.`} 
           />
           <FAQItem 
             question="Apakah sayuran Cetrofarm bersertifikat organik?" 

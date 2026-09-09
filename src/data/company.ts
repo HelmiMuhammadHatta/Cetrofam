@@ -12,7 +12,9 @@ export const companyData = {
     repOffice: {
       name: "Deruzzi Space",
       address: "Jl. Sukajadi No. 25, Bandung"
-    }
+    },
+    whatsapp: "+62 85 800 500 111",
+    email: "customerrelation@cetrofarm.com"
   }
 };
 

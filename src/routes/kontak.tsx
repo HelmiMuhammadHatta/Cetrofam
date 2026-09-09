@@ -54,13 +54,12 @@ function KontakPage() {
           {/* Informasi Kontak */}
           <div>
             <h2 className="text-2xl font-serif font-bold text-forest mb-6">Informasi Perusahaan</h2>
-            
             <div className="space-y-6">
               <div className="flex gap-4">
                 <Building2 className="text-wheat shrink-0" size={24} />
                 <div>
-                  <h3 className="font-bold text-forest">PT Cetrofarm Pangan Nusantara</h3>
-                  <p className="text-forest/70 text-sm mt-1">NIB: 9120100870934 (Terverifikasi)</p>
+                  <h3 className="font-bold text-forest">PT. Cetro Tama Indonesia (Cetrofarm)</h3>
+                  <p className="text-forest/70 text-sm mt-1">NIB: 9120212080575 (Terverifikasi)</p>
                   <p className="text-forest/70 text-sm">Terdaftar di Kemenkumham RI</p>
                 </div>
               </div>

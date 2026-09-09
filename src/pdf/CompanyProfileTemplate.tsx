@@ -109,7 +109,7 @@ export const CompanyProfileTemplate = () => (
     <Page size="A4" style={styles.coverPage}>
       <Text style={styles.title}>CETROFARM</Text>
       <Text style={styles.subtitle}>Company Profile & Investment Deck</Text>
-      <Text style={styles.footerText}>PT Cetrofarm Pangan Nusantara | 2026</Text>
+      <Text style={styles.footerText}>PT. Cetro Tama Indonesia | 2026</Text>
     </Page>
 
     {/* Ringkasan Bisnis & Traksi */}
@@ -157,8 +157,8 @@ export const CompanyProfileTemplate = () => (
       </View>
 
       <Text style={[styles.sectionTitle, { marginTop: 40 }]}>Legalitas & Sertifikasi</Text>
-      <Text style={styles.legalText}>• PT Cetrofarm Pangan Nusantara</Text>
-      <Text style={styles.legalText}>• NIB: 129302193201</Text>
+      <Text style={styles.legalText}>• PT. Cetro Tama Indonesia</Text>
+      <Text style={styles.legalText}>• NIB: 9120212080575</Text>
       <Text style={styles.legalText}>• Sertifikasi Organik INOFICE</Text>
       <Text style={styles.legalText}>• Izin Edar BPOM (Beberapa lini produk)</Text>
     </Page>
