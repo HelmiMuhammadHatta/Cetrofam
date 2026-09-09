@@ -11,9 +11,10 @@ const NAV = [
   { href: "/testimoni", label: "Testimoni" },
   { href: "/kontak", label: "Kontak" },
 ];
+import { Menu } from "lucide-react";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-forest/10 bg-paper/95 backdrop-blur">
@@ -22,52 +23,35 @@ export default function Header() {
           Cetrofarm
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              className="text-sm text-ink/80 transition-colors hover:text-forest"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <a
-            href="https://shop.cetrofarm.com/"
-            className="rounded-full bg-forest px-5 py-2 text-sm text-paper transition-colors hover:bg-forest-deep"
-          >
-            Belanja Produk
-          </a>
+        <nav className="hidden md:flex gap-8 items-center">
+          <Link to="/" className="text-forest hover:text-forest/70 font-medium transition-colors">Beranda</Link>
+          <Link to="/tentang" className="text-forest hover:text-forest/70 font-medium transition-colors">Tentang</Link>
+          <Link to="/ekosistem" className="text-forest hover:text-forest/70 font-medium transition-colors">Ekosistem</Link>
+          <Link to="/produk" className="text-forest hover:text-forest/70 font-medium transition-colors">Katalog Produk</Link>
+          <Link to="/keberlanjutan" className="text-forest hover:text-forest/70 font-medium transition-colors">Keberlanjutan</Link>
+          <Link to="/artikel" className="text-forest hover:text-forest/70 font-medium transition-colors">Artikel</Link>
+          <Link to="/investor" className="text-forest hover:text-forest/70 font-medium transition-colors">Investor</Link>
+          <Link to="/kontak" className="px-5 py-2 bg-forest text-cream font-medium rounded-sm hover:bg-forest/90 transition-colors">Hubungi Kami</Link>
         </nav>
 
-        <button
-          className="md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label="Buka menu"
-          aria-expanded={open}
-        >
-          <span className="block h-0.5 w-6 bg-ink mb-1.5" />
-          <span className="block h-0.5 w-6 bg-ink mb-1.5" />
-          <span className="block h-0.5 w-6 bg-ink" />
+        <button className="md:hidden text-forest" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <Menu size={28} />
         </button>
       </div>
 
-      {open && (
-        <nav className="flex flex-col gap-1 border-t border-forest/10 px-6 pb-4 md:hidden">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              className="py-2 text-sm text-ink/80"
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <a href="https://shop.cetrofarm.com/" className="py-2 text-sm font-medium text-forest">
-            Belanja Produk
-          </a>
-        </nav>
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-cream border-t border-forest/10 px-4 py-6 shadow-xl absolute w-full left-0 z-50">
+          <nav className="flex flex-col gap-6 text-center">
+            <Link to="/" className="text-forest font-medium text-lg" onClick={() => setIsMobileMenuOpen(false)}>Beranda</Link>
+            <Link to="/tentang" className="text-forest font-medium text-lg" onClick={() => setIsMobileMenuOpen(false)}>Tentang</Link>
+            <Link to="/ekosistem" className="text-forest font-medium text-lg" onClick={() => setIsMobileMenuOpen(false)}>Ekosistem</Link>
+            <Link to="/produk" className="text-forest font-medium text-lg" onClick={() => setIsMobileMenuOpen(false)}>Katalog Produk</Link>
+            <Link to="/keberlanjutan" className="text-forest font-medium text-lg" onClick={() => setIsMobileMenuOpen(false)}>Keberlanjutan</Link>
+            <Link to="/artikel" className="text-forest font-medium text-lg" onClick={() => setIsMobileMenuOpen(false)}>Artikel</Link>
+            <Link to="/investor" className="text-forest font-medium text-lg" onClick={() => setIsMobileMenuOpen(false)}>Investor</Link>
+            <Link to="/kontak" className="inline-block mt-4 px-6 py-3 bg-forest text-cream font-medium rounded-sm mx-auto" onClick={() => setIsMobileMenuOpen(false)}>Hubungi Kami</Link>
+          </nav>
+        </div>
       )}
     </header>
   );

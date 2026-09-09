@@ -16,10 +16,12 @@ export default function Footer() {
         <div>
           <p className="mb-3 text-sm font-medium text-gold-soft">Perusahaan</p>
           <ul className="space-y-2 text-sm text-paper/70">
-            <li><Link to={"/tentang" as any} className="hover:text-paper">Tentang Kami</Link></li>
-            <li><Link to={"/ekosistem" as any} className="hover:text-paper">Ekosistem</Link></li>
+            <li><Link to="/tentang" className="hover:text-paper">Tentang Kami</Link></li>
+            <li><Link to="/ekosistem" className="hover:text-paper">Ekosistem</Link></li>
+            <li><Link to="/produk" className="hover:text-paper">Katalog Produk</Link></li>
+            <li><Link to="/keberlanjutan" className="hover:text-paper">Keberlanjutan</Link></li>
             <li><Link to="/investor" className="hover:text-paper">Untuk Investor</Link></li>
-            <li><Link to={"/artikel" as any} className="hover:text-paper">Artikel</Link></li>
+            <li><Link to="/artikel" className="hover:text-paper">Artikel</Link></li>
           </ul>
         </div>
 

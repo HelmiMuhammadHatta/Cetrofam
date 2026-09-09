@@ -14,6 +14,7 @@ import { Route as SplatRouteImport } from './routes/$'
 import { Route as EkosistemRouteImport } from './routes/ekosistem'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as InvestorRouteImport } from './routes/investor'
+import { Route as KeberlanjutanRouteImport } from './routes/keberlanjutan'
 import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as ProdukRouteImport } from './routes/produk'
@@ -45,6 +46,11 @@ const FaqRoute = FaqRouteImport.update({
 const InvestorRoute = InvestorRouteImport.update({
   id: '/investor',
   path: '/investor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeberlanjutanRoute = KeberlanjutanRouteImport.update({
+  id: '/keberlanjutan',
+  path: '/keberlanjutan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KebijakanPrivasiRoute = KebijakanPrivasiRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/ekosistem': typeof EkosistemRoute
   '/faq': typeof FaqRoute
   '/investor': typeof InvestorRoute
+  '/keberlanjutan': typeof KeberlanjutanRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
   '/produk': typeof ProdukRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/ekosistem': typeof EkosistemRoute
   '/faq': typeof FaqRoute
   '/investor': typeof InvestorRoute
+  '/keberlanjutan': typeof KeberlanjutanRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
   '/produk': typeof ProdukRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/ekosistem': typeof EkosistemRoute
   '/faq': typeof FaqRoute
   '/investor': typeof InvestorRoute
+  '/keberlanjutan': typeof KeberlanjutanRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
   '/produk': typeof ProdukRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/ekosistem'
     | '/faq'
     | '/investor'
+    | '/keberlanjutan'
     | '/kebijakan-privasi'
     | '/kontak'
     | '/produk'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/ekosistem'
     | '/faq'
     | '/investor'
+    | '/keberlanjutan'
     | '/kebijakan-privasi'
     | '/kontak'
     | '/produk'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/ekosistem'
     | '/faq'
     | '/investor'
+    | '/keberlanjutan'
     | '/kebijakan-privasi'
     | '/kontak'
     | '/produk'
@@ -177,6 +189,7 @@ export interface RootRouteChildren {
   EkosistemRoute: typeof EkosistemRoute
   FaqRoute: typeof FaqRoute
   InvestorRoute: typeof InvestorRoute
+  KeberlanjutanRoute: typeof KeberlanjutanRoute
   KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KontakRoute: typeof KontakRoute
   ProdukRoute: typeof ProdukRoute
@@ -221,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/investor'
       fullPath: '/investor'
       preLoaderRoute: typeof InvestorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keberlanjutan': {
+      id: '/keberlanjutan'
+      path: '/keberlanjutan'
+      fullPath: '/keberlanjutan'
+      preLoaderRoute: typeof KeberlanjutanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kebijakan-privasi': {
@@ -281,6 +301,7 @@ const rootRouteChildren: RootRouteChildren = {
   EkosistemRoute: EkosistemRoute,
   FaqRoute: FaqRoute,
   InvestorRoute: InvestorRoute,
+  KeberlanjutanRoute: KeberlanjutanRoute,
   KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KontakRoute: KontakRoute,
   ProdukRoute: ProdukRoute,
