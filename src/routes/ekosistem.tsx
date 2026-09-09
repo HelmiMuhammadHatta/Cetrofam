@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
-import { MapPin, TrendingUp, Users, Target } from 'lucide-react'
+import { MapPin, TrendingUp, Users, Target, Sprout, Trees, Droplets, Wheat } from 'lucide-react'
 import { businessLines, cultivationProcess } from '../data/company'
 import { JavaMap } from '../components/JavaMap'
 
@@ -129,17 +129,15 @@ function EkosistemPage() {
               }}
               className="text-center group"
             >
-              <div className="relative mb-6 overflow-hidden rounded-sm shadow-lg">
-                <img 
-                  src={step.image} 
-                  alt={step.title}
-                  width="400"
-                  height="300"
-                  loading="lazy"
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+              <div className="relative mb-6 overflow-hidden rounded-sm shadow-lg bg-white flex items-center justify-center h-48 border border-forest/10 group-hover:bg-wheat/20 transition-colors">
                 <div className="absolute top-4 left-4 bg-wheat text-forest w-10 h-10 flex items-center justify-center font-bold text-xl rounded-full shadow-md z-10">
                   {step.step}
+                </div>
+                <div className="text-forest/30 group-hover:scale-110 group-hover:text-forest transition-all duration-500">
+                  {idx === 0 && <Sprout size={64} strokeWidth={1.5} />}
+                  {idx === 1 && <Trees size={64} strokeWidth={1.5} />}
+                  {idx === 2 && <Droplets size={64} strokeWidth={1.5} />}
+                  {idx === 3 && <Wheat size={64} strokeWidth={1.5} />}
                 </div>
               </div>
               <h3 className="text-xl font-bold text-forest mb-2">{step.title}</h3>

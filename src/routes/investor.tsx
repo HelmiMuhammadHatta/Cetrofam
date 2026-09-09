@@ -2,7 +2,6 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Download, TrendingUp, Handshake, CheckCircle, PieChart, ShieldAlert, BarChart } from 'lucide-react'
 import { useState } from 'react'
 import { teamMembers } from '../data/company'
-import { submitInvestor } from '../server/actions'
 
 export const Route = createFileRoute('/investor')({
   component: InvestorPage,
@@ -19,27 +18,26 @@ function InvestorPage() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
+  const FORM_ID = "h1z6x0p2wu6"
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSubmitStatus('loading')
     setErrorMessage('')
 
-    const formData = new FormData(e.currentTarget)
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      company: formData.get('company') as string,
-      message: formData.get('message') as string,
-    }
-
     try {
-      const result = await submitInvestor({ data })
-      if (result.success) {
+      // @ts-ignore
+      const forminit = new window.Forminit()
+      const formData = new FormData(e.currentTarget)
+      
+      const { error } = await forminit.submit(FORM_ID, formData)
+      
+      if (error) {
+        setSubmitStatus('error')
+        setErrorMessage(error.message || 'Terjadi kesalahan sistem.')
+      } else {
         setSubmitStatus('success')
         e.currentTarget.reset()
-      } else {
-        setSubmitStatus('error')
-        setErrorMessage(result.error || 'Terjadi kesalahan sistem.')
       }
     } catch (err) {
       setSubmitStatus('error')
