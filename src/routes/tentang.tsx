@@ -163,13 +163,13 @@ function TentangPage() {
         <div className="space-y-16">
           {teamMembers.map((member, idx) => (
             <div key={member.name} className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-12 bg-white p-8 rounded-sm shadow-sm border border-forest/10`}>
-              <div className="w-48 md:w-56 shrink-0">
+              {/* <div className="w-48 md:w-56 shrink-0">
                 <TeamMemberAvatar 
                   src={member.image} 
                   alt={`${member.name} — ${member.role}`} 
                   sizeClassName="w-48 h-48 md:w-56 md:h-56"
                 />
-              </div>
+              </div> */}
               <div className={`flex-1 text-center ${idx % 2 === 1 ? 'md:text-right' : 'md:text-left'}`}>
                 <h3 className="text-2xl font-serif font-bold text-forest mb-1">{member.name}</h3>
                 <span className="inline-block px-3 py-1 bg-forest/10 text-forest rounded-sm text-xs font-bold tracking-wider uppercase mb-4">
