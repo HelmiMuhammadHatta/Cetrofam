@@ -1,103 +1,175 @@
-import { useState, useEffect } from 'react'
-import { X } from 'lucide-react'
+import { useState, useEffect } from 'react';
+import { X, Download, CheckCircle, ShieldCheck } from 'lucide-react';
+import { submitInvestor } from '../server/actions';
 
 interface PdfDownloadModalProps {
   isOpen: boolean;
   onClose: () => void;
-  pdfUrl: string;
+  pdfUrl?: string;
 }
 
-export function PdfDownloadModal({ isOpen, onClose, pdfUrl }: PdfDownloadModalProps) {
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+export function PdfDownloadModal({ isOpen, onClose, pdfUrl = "/docs/CetroFarm-Company-Profile.pdf" }: PdfDownloadModalProps) {
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [honeypot, setHoneypot] = useState('');
 
-  const FORM_ID = "h1z6x0p2wu6"
-
-  // Prevent scrolling when modal is open
+  // Prevent background scrolling when modal is active
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = 'unset';
     }
-    return () => { document.body.style.overflow = 'unset' }
-  }, [isOpen])
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isOpen]);
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setSubmitStatus('loading')
-    
+    e.preventDefault();
+    setSubmitStatus('loading');
+    setErrorMessage('');
+
+    // Honeypot check
+    if (honeypot) {
+      setSubmitStatus('error');
+      setErrorMessage('Terdeteksi aktivitas mencurigakan.');
+      return;
+    }
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+    const name = formData.get('name') as string;
+    const company = formData.get('company') as string;
+
     try {
-      // @ts-ignore
-      const forminit = new window.Forminit()
-      const formData = new FormData(e.currentTarget)
-      
-      const { error } = await forminit.submit(FORM_ID, formData)
-      
-      if (error) {
-        setSubmitStatus('error')
-        setErrorMessage(error.message)
+      const res = await submitInvestor({
+        data: {
+          name: name || 'Calon Investor',
+          email,
+          company: company || 'Independen',
+          message: `Permintaan Unduh Company Profile PDF via Modal. Company: ${company || '-'}`
+        }
+      });
+
+      if (res.success) {
+        setSubmitStatus('success');
+        // Open official PDF in new tab
+        window.open(pdfUrl, '_blank');
+        setTimeout(() => {
+          onClose();
+          setSubmitStatus('idle');
+        }, 2000);
       } else {
-        setSubmitStatus('success')
-        window.open(pdfUrl, '_blank')
-        setTimeout(() => onClose(), 1500)
+        setSubmitStatus('error');
+        setErrorMessage(res.error || 'Gagal memproses permintaan.');
       }
     } catch (err) {
-      setSubmitStatus('error')
-      setErrorMessage('Terjadi kesalahan jaringan.')
+      // Direct fallback download if server action fails
+      window.open(pdfUrl, '_blank');
+      setSubmitStatus('success');
+      setTimeout(() => {
+        onClose();
+        setSubmitStatus('idle');
+      }, 1500);
     }
-  }
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="bg-white text-forest w-full max-w-md rounded-sm shadow-2xl relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-forest/80 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-white text-forest w-full max-w-md rounded-sm shadow-2xl relative border border-forest/10">
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 text-forest/50 hover:text-forest transition-colors"
+          className="absolute top-4 right-4 text-forest/50 hover:text-forest transition-colors p-1"
+          aria-label="Tutup"
         >
-          <X size={24} />
+          <X size={20} />
         </button>
         
         <div className="p-8">
-          <h2 className="text-2xl font-serif font-bold mb-2">Unduh Company Profile</h2>
-          <p className="text-forest/70 mb-6">Silakan masukkan email Anda untuk mendapatkan tautan unduhan langsung dokumen investasi kami.</p>
+          <div className="w-12 h-12 bg-forest/10 rounded-full flex items-center justify-center text-forest mb-4">
+            <Download size={24} />
+          </div>
+
+          <h2 className="text-2xl font-serif font-bold mb-2 text-forest">Minta & Unduh Company Profile</h2>
+          <p className="text-forest/70 text-sm mb-6 leading-relaxed">
+            Isi data diri singkat Anda untuk mendapatkan dokumen resmi profil perusahaan & ringkasan investasi CetroFarm (PDF).
+          </p>
 
           {submitStatus === 'success' ? (
-            <div className="bg-wheat/20 text-forest p-4 rounded-sm font-medium text-center">
-              Dokumen akan terbuka di tab baru...
+            <div className="bg-wheat/20 text-forest p-4 rounded-sm font-medium text-center flex flex-col items-center gap-2 border border-wheat/30">
+              <CheckCircle size={32} className="text-forest" />
+              <p className="font-bold text-sm">Dokumen sedang dibuka di tab baru!</p>
+              <p className="text-xs text-forest/70">Terima kasih atas minat Anda pada CetroFarm.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="hidden" name="fi-sender-userId" value="investor" />
-              
+              {/* Anti-spam honeypot */}
+              <input 
+                type="text" 
+                name="website_url" 
+                value={honeypot} 
+                onChange={(e) => setHoneypot(e.target.value)} 
+                className="hidden" 
+                tabIndex={-1} 
+                autoComplete="off" 
+              />
+
               <div>
-                <label className="block text-sm font-bold mb-1">Email Anda *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider mb-1 text-forest">Nama Lengkap *</label>
+                <input 
+                  type="text" 
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30 text-sm" 
+                  placeholder="Misal: Budi Santoso"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider mb-1 text-forest">Email Kerja / Pribadi *</label>
                 <input 
                   type="email" 
-                  name="fi-sender-email"
+                  name="email"
                   required
-                  className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30" 
-                  placeholder="email@perusahaan.com"
+                  className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30 text-sm" 
+                  placeholder="nama@perusahaan.com"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider mb-1 text-forest">Nama Institusi / Perusahaan</label>
+                <input 
+                  type="text" 
+                  name="company"
+                  className="w-full px-4 py-3 rounded-sm border border-forest/20 focus:outline-none focus:border-forest bg-cream/30 text-sm" 
+                  placeholder="Misal: VC Partner / PT Mandiri"
                 />
               </div>
 
               {submitStatus === 'error' && (
-                <p className="text-red-600 text-sm font-bold">{errorMessage}</p>
+                <p className="text-red-600 text-xs font-bold bg-red-50 p-2 rounded">{errorMessage}</p>
               )}
 
               <button 
                 type="submit" 
                 disabled={submitStatus === 'loading'}
-                className="w-full py-3 bg-forest text-cream font-bold rounded-sm hover:bg-forest/90 transition-colors disabled:opacity-50 mt-4"
+                className="w-full py-3.5 bg-forest text-cream font-bold rounded-sm hover:bg-forest/90 transition-colors disabled:opacity-50 mt-4 text-sm flex items-center justify-center gap-2"
               >
-                {submitStatus === 'loading' ? 'Memproses...' : 'Unduh Sekarang'}
+                {submitStatus === 'loading' ? 'Memproses...' : (
+                  <>
+                    <Download size={16} /> Unduh PDF Sekarang
+                  </>
+                )}
               </button>
+
+              <div className="flex items-center gap-1 justify-center text-[11px] text-forest/60 pt-2">
+                <ShieldCheck size={14} /> Data Anda aman & bebas spam.
+              </div>
             </form>
           )}
         </div>
       </div>
     </div>
-  )
+  );
 }

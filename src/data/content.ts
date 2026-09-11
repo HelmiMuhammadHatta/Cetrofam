@@ -1,13 +1,17 @@
 export const metrics = {
   farmers: "210+",
+  farmersSource: "Data internal, Q2 2026",
   landArea: "340 ha",
-  productLines: "3 lini",
+  landAreaSource: "Data internal, Q2 2026",
+  productLines: "5 lini",
+  productLinesSource: "Aktif beroperasi",
   established: "2018",
+  establishedSource: "NIB 9120212080575",
   harvestVolume: "150 ton/bulan",
-  distributionReach: "Jawa & Bali"
+  harvestVolumeSource: "Data internal, Q2 2026",
+  distributionReach: "Jawa & Bali",
+  distributionReachSource: "Jaringan B2B Q2 2026"
 };
-
-
 
 export const valueProps = [
   {
@@ -53,7 +57,7 @@ export const articles = [
   {
     title: "Masa Depan Pertanian Organik di Jawa Tengah",
     slug: "agrikultur-terintegrasi-era-modern",
-    image: "/assets/artikel-1.webp",
+    image: "/assets/artikel-1-opt.jpg",
     date: "12 Ags 2026"
   },
   {
