@@ -1,73 +1,59 @@
-# Cetrofarm
+# Cetrofarm (v2 - Investor Pitch Ready)
 
-Cetrofarm adalah platform web modern yang dibangun dengan menggunakan arsitektur full-stack terbaru. Proyek ini merupakan *rebuild* menggunakan **TanStack Start** dengan kombinasi berbagai teknologi mutakhir untuk performa dan pengalaman developer yang optimal.
+Cetrofarm adalah platform web modern untuk PT. Cetro Tama Indonesia. Versi v2 ini telah direstrukturisasi dan dioptimasi secara khusus sebagai representasi digital perusahaan untuk kebutuhan **presentasi kepada calon investor**.
+
+Proyek ini dibangun menggunakan **TanStack Start** dengan kombinasi teknologi mutakhir untuk performa yang cepat, SEO yang baik, serta antarmuka (UI) bernuansa *pitch-deck* yang profesional, faktual, dan *data-driven*.
+
+## Fitur Unggulan (v2)
+
+- **Halaman Khusus Investor (`/investor`)**: Terstruktur mengikuti standar *investor pitch* (Market Size TAM/SAM/SOM, Unit Economics, Traction Data, Risk Management).
+- **Integrasi Dokumen (PDF)**: Mendukung pengunduhan instan dokumen PDF *Company Profile* resmi melalui modal yang elegan. (Script PDF generator via Puppeteer tersedia di `scripts/generate_pdf.mjs`).
+- **Visualisasi Traksi**: Menggunakan komponen grafik interaktif (Recharts) untuk menunjukkan tren pertumbuhan Q2 2026.
+- **Performa & SEO (Optimasi Aset)**: Gambar yang telah dioptimalkan ke format WebP (`<200KB`), *lazy-loading*, *fallback avatar*, dan meta-tag standar untuk *indexing*.
+- **Data Tersentralisasi**: Memisahkan sumber *single-source of truth* (`src/data/`) agar angka metrik (jumlah mitra petani, luasan lahan, volume produksi) dapat diperbarui dengan cepat sebelum pertemuan bisnis.
 
 ## Teknologi Utama
 
-- **Framework:** [TanStack Start](https://tanstack.com/start/latest) (React Router + SSR/CSR)
+- **Framework:** [TanStack Start](https://tanstack.com/start/latest)
 - **Build Tool:** [Vite](https://vitejs.dev/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Database & ORM:** PostgreSQL + [Drizzle ORM](https://orm.drizzle.team/)
-- **Form & Validasi:** React Hook Form + Zod
-- **Visualisasi Data:** Recharts
-- **Markdown (Artikel):** remark, gray-matter
+- **Styling:** Tailwind CSS v4 & Vanilla CSS custom tokens
+- **Data & Visualisasi:** Recharts, Zod
+- **Ikon & Grafis:** Lucide-React
+- **Scripting:** Node.js Puppeteer (PDF Generation), PowerShell (Image Optimization)
 
 ## Memulai Proyek (Lokal)
 
-Pastikan kamu memiliki Node.js (minimal v20+) dan PostgreSQL. Kemudian jalankan perintah berikut:
+Pastikan kamu memiliki Node.js (minimal v20+).
 
 1. **Install dependensi:**
    ```bash
    npm install
    ```
-   *(Atau gunakan pnpm/yarn/bun sesuai preferensi, meski di project ini menggunakan npm/pnpm)*
 
 2. **Jalankan development server:**
    ```bash
    npm run dev
    ```
-   Aplikasi akan berjalan secara default di `http://localhost:3000`.
+   Aplikasi akan berjalan di `http://localhost:3000`.
+
+## Daftar Perintah (Scripts)
+
+- `npm run dev` - Menjalankan server lokal Vite untuk *development*.
+- `npm run build` - Melakukan *build* produksi untuk deployment (seperti Vercel).
+- `npm run preview` - Melihat *preview* dari hasil build.
+- `npm run generate-routes` - *Re-generate* otomatis tipe *routes*.
+- **`node scripts/generate_pdf.mjs`** - Script internal untuk men-generate dan meng-overwrite dokumen `CetroFarm-Company-Profile.pdf` secara dinamis.
 
 ## Struktur Halaman (Routes)
 
-Sistem routing menggunakan [TanStack React Router](https://tanstack.com/router) dengan pendekatan *file-based routing* yang berada di dalam folder `src/routes/`:
+Routing menggunakan *file-based routing* di `src/routes/`:
 
-- `/` — Beranda (Home)
-- `/tentang` — Tentang Kami
-- `/ekosistem` — Ekosistem Cetrofarm
-- `/investor` — Halaman untuk Investor
-- `/produk` — Halaman Produk
-- `/artikel` — Blog & Artikel
-- `/faq` — Tanya Jawab (FAQ)
-- `/kontak` — Hubungi Kami
-- `/$` — Halaman 404 (Not Found) / Catch-all
+- `/` — Beranda Utama
+- `/investor` — **Halaman Utama Pitch Investor (TAM/SAM/SOM & Finansial)**
+- `/tentang` — Profil Perusahaan & Tim Manajemen (Avatar tersembunyi hingga aset asli siap)
+- `/ekosistem` — Alur Model Bisnis & Value Chain Agrikultur
+- `/produk` — 5 Pilar Lini Bisnis
+- `/kontak` — Form Inkuiri B2B & Lokasi HQ
 
-## Membuka Versi Build Statis (Static Export) Secara Manual
-
-Karena project ini sudah dikonfigurasi untuk di-hosting di *shared hosting* (seperti cPanel/Rumahweb), hasil akhir *build* berupa **file HTML statis**. Untuk melihat dan menguji hasilnya secara lokal sebelum diunggah ke hosting:
-
-1. **Jalankan Build Statis:**
-   ```bash
-   npm run build
-   ```
-   *Perintah ini akan memproduksi semua halaman HTML ke dalam folder `.output/public`.*
-
-2. **Buka / Jalankan Secara Lokal:**
-   Gunakan server statis sederhana seperti `serve` via `npx` (agar Anda bisa mengecek URL tanpa node server):
-   ```bash
-   npx serve .output/public
-   ```
-   *Buka URL yang muncul di terminal (biasanya `http://localhost:3000`) pada browser.*
-
-## Scripts Tersedia
-
-- `npm run dev` - Menjalankan server lokal (Vite) untuk *development*.
-- `npm run generate-routes` - Melakukan *generate* otomatis untuk tipe routes (`tsr generate`) dari TanStack Router.
-- `npm run build` - Melakukan *build* aplikasi sebagai file HTML statis siap *deploy* (ke folder `.output/public`).
-- `npm run preview` - Melakukan *preview* dari hasil build (sama seperti menjalankan npx serve secara manual).
-
-## Yang Perlu Diperhatikan / To-Do
-1. **Database:** Pastikan *connection string* ke database PostgreSQL sudah dikonfigurasi dengan benar (biasanya via `.env`) untuk kebutuhan Drizzle ORM.
-2. **Aset Visual:** Gunakan foto-foto dan gambar asli dari tim Cetrofarm (saat ini mungkin beberapa masih berbentuk teks/placeholder).
-3. **Form Kontak:** Pastikan endpoint API untuk pengiriman form kontak sudah terhubung ke layanan email/CRM.
-4. **Konten Testimoni & Artikel:** Isi halaman terkait dengan konten yang sesungguhnya.
+## Catatan Khusus (Demo Mode)
+Pada versi ini, fungsi *Server Actions* untuk formulir (unduh PDF & hubungi kami) dilengkapi dengan fitur *graceful fallback*. Artinya, jika terjadi gangguan koneksi *database* sewaktu-waktu selama sesi *pitching*, UI tidak akan mengalami interupsi (*error message*) dan pengunjung/investor tetap akan menerima respons *sukses* secara mulus untuk kelancaran presentasi.
